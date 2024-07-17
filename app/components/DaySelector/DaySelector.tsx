@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { DaySelectItemType } from "./DaySelectItems";
 import DaySelectItem from "./DaySelectItem";
+import { motion } from 'framer-motion';
 
 const DaySelector: FC<{
     selectedDay: number;
@@ -8,7 +9,12 @@ const DaySelector: FC<{
     onClickDay: (day: number) => void;
 }> = (props) => {
     return (
-        <div className="flex flex-col gap-1 bg-zinc-900 backdrop-blur-lg bg-opacity-25 p-3 rounded-2xl shadow-md">
+        <motion.div
+            className="flex flex-col gap-1 bg-zinc-900 backdrop-blur-lg bg-opacity-25 p-3 rounded-2xl shadow-md"
+            initial={{ x: -50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+        >
             {props.daySelectItems.map((daySelectItem, index) => (
                 <DaySelectItem
                     key={`day-select-item-${index}`}
@@ -19,7 +25,7 @@ const DaySelector: FC<{
                     }}
                 />
             ))}
-        </div>
+        </motion.div>
     );
 }
 export default DaySelector

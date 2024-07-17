@@ -3,6 +3,7 @@ import HotAirBalloon from "../components/HotAirBalloon/HotAirBalloon";
 import Tent from "../components/Tent/Tent";
 import Carousel from "../components/Carousel/Carousel";
 import FerrisWheel from "../components/FerrisWheel/FerrisWheel";
+import RollerCoaster from "../components/RollerCoaster/RollerCoaster";
 const Backdrop: React.FC<{}> = (props) => {
 
     const stars = Array.from({ length: 100 }, (_, index) => ({
@@ -13,9 +14,9 @@ const Backdrop: React.FC<{}> = (props) => {
     }));
 
     return (
-        <div style={{
-            backgroundImage: "linear-gradient(180deg, #172B96 0%, #5B3980 15%, #9E476B 35%, #C6B751 100%);"
-        }} className="relative w-screen h-screen">
+        <div className="relative w-screen h-screen z-10" style={{
+            backgroundImage: "linear-gradient(180deg, #172B96 0%, #5B3980 15%, #9E476B 35%, #C6B751 100%)"
+        }} >
             {stars.map(star => (
                 <div
                     key={star.id}
@@ -27,13 +28,13 @@ const Backdrop: React.FC<{}> = (props) => {
                     }}
                 ></div>
             ))}
-            <div className="absolute top-0 l-0 h-screen w-1/3 ml-5 pb-48">
-                <div className="animate-float flex flex-col justify-center align-center h-full">
+            <div className="absolute top-0 l-0 h-screen w-1/3 ml-5 pt-36">
+                <div className="animate-float flex flex-col align-center h-full">
                     <HotAirBalloon />
                 </div>
             </div>
-            <div className="absolute top-0 l-0 h-screen w-1/3 ml-48 pb-32">
-                <div className=" flex flex-col justify-center align-center h-full scale-125 animate-float" style={{
+            <div className="absolute top-0 l-0 h-screen w-1/3 ml-48 pt-40">
+                <div className=" flex flex-col align-center h-full scale-125 animate-float" style={{
                     animationDelay: "0.5s"
                 }}>
                     <div className="scale-125">
@@ -65,11 +66,12 @@ const Backdrop: React.FC<{}> = (props) => {
                 <div>
                     <Tent />
                 </div>
-
+                <div className="flex-1"></div>
+                <div className="flex-1"></div>
                 <FerrisWheel />
             </div>
             <div className="flex absolute left-0 bottom-0 w-full h-10 z-30" style={{
-                background: "linear-gradient(180deg, rgba(40, 42, 87, 0%) 0%, #282A57 100%);"
+                background: "linear-gradient(180deg, rgba(40, 42, 87, 0%) 0%, #282A57 100%)"
             }}>
             </div>
 

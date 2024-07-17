@@ -25,10 +25,15 @@ const config: Config = {
           '0%, 100%': { transform: 'translateY(0px)' },
           '50%': { transform: 'translateY(-10px)' },
         },
+        fadeIn: {
+            '0%': { opacity: "0%" },
+            '100%': { opacity: "100%" },
+        }
       },
       animation: {
         float: 'float 4s ease-in-out infinite',
         horseBob: 'horseBob 2s ease-in-out infinite',
+        fadeIn: "fade-in 2s ease-in forwards",
       },
     }
   },

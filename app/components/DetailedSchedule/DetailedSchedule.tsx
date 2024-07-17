@@ -1,7 +1,7 @@
 import { EventTypeWithMomentDates } from "@/app/pages/EventType";
+import { motion } from 'framer-motion';
 import { FC, useState } from "react";
 import DetailedScheduleItem from "./DetailedScheduleItem";
-import { Modal } from "../shared/Modal";
 import EventModal from "./EventModal";
 
 const DetailedSchedule: FC<{
@@ -16,7 +16,12 @@ const DetailedSchedule: FC<{
 
     return (
         <>
-            <div className="w-full pt-5 h-full max-h-full overflow-y-auto pr-8">
+            <motion.div 
+                className="w-full pt-5 h-full max-h-full overflow-y-auto pr-8 animate-fadeIn"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+            >
                 {props.events.map((event, index) => (
                     <DetailedScheduleItem
                         key={`detailed-schedule-item-${index}`}
@@ -26,7 +31,7 @@ const DetailedSchedule: FC<{
                         }}
                     />
                 ))}
-            </div>
+            </motion.div>
             <EventModal
                 event={selectedEvent}
                 onClose={() => {

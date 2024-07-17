@@ -36,13 +36,13 @@ const FerrisWheel: FC<{}> = (props) => {
                 <div className="wheel">
                     <div className="roomsArea">
                         {
-                            getPos(210 / 2, 12).map((item, index) => (
+                            getPos(300 / 2, 12).map((item, index) => (
                                 <div
                                     key={index}
                                     className={index % 2 == 0 ? "room" : "room2"}
                                     style={{
                                         top: `${item.y}px`,
-                                        left: `${item.x - 15}px`
+                                        left: `${item.x - (43/2)}px`
                                     }}
                                 />
                             ))

@@ -11,7 +11,7 @@ const Schedule: FC<{}> = (props) => {
     const scheduleHook = useScheduleHook();
 
     return (
-        <div className=" w-full min-h-screen bg-cover" style={{ backgroundImage: `url("https://i.ibb.co/dr6HHrF/Mountain-Background.jpg")` }}>
+        <div className="absolute top-0 left-0 w-full min-h-screen z-40">
             <Navbar />
             <div className="flex p-4 w-full h-screen gap-10">
                 <div className="flex flex-col justify-center flex-1 max-w-[600px]">

@@ -1,7 +1,7 @@
 .container {
     display: flex;
     justify-content: flex-end;
-    height: 269px;
+    height: 380px;
 
     overflow-y: hidden;
     overflow-x: hidden;
@@ -25,9 +25,9 @@
 .wheel {
     background-image: url('/static/images/wheel.png');
     animation: rotateAnimation 40s linear infinite;
-    width: 210px;
-    height: 210px;
-    background-size: 210px 210px;
+    width: 300px;
+    height: 300px;
+    background-size: 300px 300px;
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
@@ -39,8 +39,8 @@
 .roomsArea {
     /* position: relative; */
     position: absolute;
-    top: 105px;
-    left: 105px;
+    top: 150px;
+    left: 150px;
     z-index: 0;
     transform: translateZ(-10px)
 }
@@ -48,11 +48,11 @@
 .room {
     background-image: url('/static/images/ferriswheel-car.png');
     animation: rotateAnimation 40s linear infinite reverse;
-    width: 30px;
-    height: 30px;
+    width: 43px;
+    height: 43px;
     position: absolute;
     transform-origin: top center;
-    background-size: 30px 30px;
+    background-size: 43px 43px;
     background-position: center;
     background-repeat: no-repeat;
     z-index: 2;
@@ -61,23 +61,23 @@
 .room2 {
     background-image: url('/static/images/ferriswheel-car-2.png');
     animation: rotateAnimation 40s linear infinite reverse;
-    width: 30px;
-    height: 30px;
+    width: 43px;
+    height: 43px;
     position: absolute;
     transform-origin: top center;
-    background-size: 30px 30px;
+    background-size: 43px 43px;
     background-position: center;
     background-repeat: no-repeat;
 }
 
 .bottom {
     background-image: url('/static/images/ferriswheel-base.png');
-    width: 160px;
-    height: 187.46px;
+    width: 229px;
+    height: 267.8px;
     position: absolute;
-    top: 84px;
-    left: 27px;
-    background-size: 160px 187.46px;
+    top: 120px;
+    left: 36px;
+    background-size: 229px 267.8px;
     background-position: center;
     background-repeat: no-repeat;
     z-index: 99;

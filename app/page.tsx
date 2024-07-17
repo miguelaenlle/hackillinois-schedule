@@ -4,8 +4,10 @@ import Schedule from "./pages/Schedule";
 
 export default function Home() {
   return (
-    // <Schedule />
-    <Backdrop />
+    <>
+      <Schedule />
+      <Backdrop />
+    </>
 
   );
 }
