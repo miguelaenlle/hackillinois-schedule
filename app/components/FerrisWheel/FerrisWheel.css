@@ -1,7 +1,7 @@
 .container {
     display: flex;
     justify-content: flex-end;
-    height: 260px;
+    height: 269px;
 
     overflow-y: hidden;
     overflow-x: hidden;
@@ -24,41 +24,61 @@
 
 .wheel {
     background-image: url('/static/images/wheel.png');
-    animation: rotateAnimation 10s linear infinite;
+    animation: rotateAnimation 40s linear infinite;
     width: 210px;
     height: 210px;
     background-size: 210px 210px;
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
+    z-index: 1;
+    transform-style: preserve-3d;
+    opacity: 0.9;
 }
 
 .roomsArea {
+    /* position: relative; */
     position: absolute;
     top: 105px;
     left: 105px;
+    z-index: 0;
+    transform: translateZ(-10px)
 }
 
 .room {
     background-image: url('/static/images/ferriswheel-car.png');
-    animation: rotateAnimation 10s linear infinite reverse;
-    width: 40px;
-    height: 40px;
+    animation: rotateAnimation 40s linear infinite reverse;
+    width: 30px;
+    height: 30px;
     position: absolute;
     transform-origin: top center;
-    background-size: 40px 40px;
+    background-size: 30px 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 2;
+}
+
+.room2 {
+    background-image: url('/static/images/ferriswheel-car-2.png');
+    animation: rotateAnimation 40s linear infinite reverse;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    transform-origin: top center;
+    background-size: 30px 30px;
     background-position: center;
     background-repeat: no-repeat;
 }
 
 .bottom {
     background-image: url('/static/images/ferriswheel-base.png');
-    width: 114px;
-    height: 157px;
+    width: 160px;
+    height: 187.46px;
     position: absolute;
-    top: 101px;
-    left: 48px;
-    background-size: 114px 157px;
+    top: 84px;
+    left: 27px;
+    background-size: 160px 187.46px;
     background-position: center;
     background-repeat: no-repeat;
+    z-index: 99;
 }
