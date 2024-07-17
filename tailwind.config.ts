@@ -19,11 +19,16 @@ const config: Config = {
       keyframes: {
         float: {
           '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-15px)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+        horseBob: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-10px)' },
         },
       },
       animation: {
         float: 'float 4s ease-in-out infinite',
+        horseBob: 'horseBob 2s ease-in-out infinite',
       },
     }
   },
