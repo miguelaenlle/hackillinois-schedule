@@ -19,7 +19,7 @@ const ScheduleMode: React.FC<{
                 className={`text-lg ${props.mode === "detailed" ? "font-medium" : "text-zinc-300"} transition-all`}
             >
                 Detailed
-                </p>
+            </p>
         </div>
     );
 }

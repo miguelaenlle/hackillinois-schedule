@@ -20,7 +20,7 @@ export const useScheduleHook = () => {
             return [];
         }
         return events.filter((event) => {
-            return event.startTimeMoment.format("dddd, MMMM D, YYYY") === eventDays[selectedDay].dateString;
+            return event.startTimeMoment.format("MMMM D, YYYY") === eventDays[selectedDay].fullDate;
         });
     }, [events, selectedDay])
 
@@ -43,32 +43,41 @@ export const useScheduleHook = () => {
 
     const handleLoadEvents = async () => {
         try {
-            // const response = await fetchHook.get("event");
-            // console.log("Repsonse", response);
-            // const newEvents = response.data.events as Event[];
-            const newEvents = (TEMP_EVENT_DATA.events as { [key: string]: any }[]) as EventType[];
+            const isLocalhost = window.location.hostname === "localhost";
+
+            let newEvents: EventType[] = [];
+            if (isLocalhost) {
+                // Retrieve events via API
+                newEvents = (TEMP_EVENT_DATA.events as { [key: string]: any }[]) as EventType[];
+            } else {
+                const response = await fetchHook.get("event/");
+                // const newEvents = response.data.events as Event[];
+            }
             const newEventsWithMomentDate = newEvents.map((event) => (
                 {
                     ...event,
-                    startTimeMoment: moment(event.startTime * 1000),
-                    endTimeMoment: moment(event.endTime * 1000)
+                    startTimeMoment: moment.unix(event.startTime),
+                    endTimeMoment: moment.unix(event.endTime)
                 }
             )).sort((a, b) => a.startTime - b.startTime);
+
+            console.log(newEventsWithMomentDate[0].startTimeMoment.format("hh:mm a"));
+
 
             let uniqueDates: DaySelectItemType[] = [];
 
             for (let i = 0; i < newEventsWithMomentDate.length; i++) {
                 const event = newEventsWithMomentDate[i];
-                const date = event.startTimeMoment.format("dddd, MMMM D, YYYY");
-                if (!uniqueDates.find((day) => day.dateString === date)) {
+                const dayOfWeek = event.startTimeMoment.format("dddd");
+                const date = event.startTimeMoment.format("MMMM D, YYYY");
+                if (!uniqueDates.some((daySelectItem) => daySelectItem.fullDate === date)) {
                     uniqueDates.push({
-                        name: `Day ${uniqueDates.length + 1}`,
-                        dateString: date
+                        dayOfWeek,
+                        fullDate: date
                     });
                 }
             }
 
-            console.log('newEventsWithMomentDate', newEventsWithMomentDate);
             setEvents(newEventsWithMomentDate);
             setEventDays(uniqueDates);
         } catch (e) {

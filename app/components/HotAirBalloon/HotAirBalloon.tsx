@@ -2,7 +2,7 @@ import { FC } from "react";
 
 const HotAirBalloon: FC<{}> = (props) => {
     return (
-        <div className="animate-bounce duration-[20000]">
+        <div>
             <svg width="94" height="141" viewBox="0 0 94 141" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M41.2184 105.191L42.0554 126.304" stroke="#333248" stroke-width="1.37342" stroke-miterlimit="10" />
                 <path d="M50.4259 105.191L49.5887 126.304" stroke="#333248" stroke-width="1.37342" stroke-miterlimit="10" />

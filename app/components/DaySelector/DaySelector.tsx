@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { DAY_SELECT_ITEMS, DaySelectItemType } from "./DaySelectItems";
+import { DaySelectItemType } from "./DaySelectItems";
 import DaySelectItem from "./DaySelectItem";
 
 const DaySelector: FC<{
@@ -8,7 +8,7 @@ const DaySelector: FC<{
     onClickDay: (day: number) => void;
 }> = (props) => {
     return (
-        <div className="flex gap-5">
+        <div className="flex flex-col gap-1 bg-zinc-900 backdrop-blur-lg bg-opacity-25 p-3 rounded-2xl shadow-md">
             {props.daySelectItems.map((daySelectItem, index) => (
                 <DaySelectItem
                     key={`day-select-item-${index}`}

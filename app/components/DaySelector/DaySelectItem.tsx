@@ -7,11 +7,11 @@ const DaySelectItem: React.FC<{
 }> = (props) => {
     return (
         <div
-            className={`${props.isSelected ? "bg-black" : ""} transition-all duration-150 backdrop-blur-md bg-opacity-75 rounded-lg p-3 cursor-pointer`}
+            className={`${props.isSelected ? "bg-white shadow-md" : ""} p-3 transition-all duration-150 bg-opacity-25 cursor-pointer rounded-lg`}
             onClick={props.onClick}
         >
-            <p className="font-bold text-xl">{props.daySelectItem.name}</p>
-            <p className="text-lg">{props.daySelectItem.dateString}</p>
+            <p className="font-bold text-xl">{props.daySelectItem.dayOfWeek}</p>
+            <p className="text-md">{props.daySelectItem.fullDate}</p>
         </div>
     );
 }

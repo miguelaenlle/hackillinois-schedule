@@ -11,32 +11,35 @@ const Schedule: FC<{}> = (props) => {
     const scheduleHook = useScheduleHook();
 
     return (
-        <div className="bg-slate-600 w-full min-h-screen">
+        <div className=" w-full min-h-screen bg-cover" style={{ backgroundImage: `url("https://i.ibb.co/dr6HHrF/Mountain-Background.jpg")` }}>
             <Navbar />
-            <div className="flex items-start flex-col p-4 w-full max-w-5xl mx-auto">
-                <DaySelector
-                    selectedDay={scheduleHook.selectedDay}
-                    daySelectItems={scheduleHook.eventDays ?? []}
-                    onClickDay={scheduleHook.handleSelectDay}
-                />
-                <ScheduleMode
-                    mode={scheduleHook.mode}
-                    onToggleMode={scheduleHook.handleToggleMode}
-                />
-                {scheduleHook.error && (
-                    <>
-                        <br />
-                        <AlertBox
-                            title="Whoops, an error occurred!"
-                            message={scheduleHook.error}
-                        />
-                    </>
-                )}
-                {scheduleHook.mode === "detailed" && (
+            <div className="flex p-4 w-full h-screen gap-10">
+                <div className="flex flex-col justify-center flex-1 max-w-[600px]">
+                    <DaySelector
+                        selectedDay={scheduleHook.selectedDay}
+                        daySelectItems={scheduleHook.eventDays ?? []}
+                        onClickDay={scheduleHook.handleSelectDay}
+                    />
+
+                </div>
+                <div className="flex flex-col flex-[2.5] pt-20">
+                    {scheduleHook.error && (
+                        <>
+                            <br />
+                            <AlertBox
+                                title="Whoops, an error occurred!"
+                                message={scheduleHook.error}
+                            />
+                        </>
+                    )}
                     <DetailedSchedule
                         events={scheduleHook.displayedEvents ?? []}
                     />
-                )}
+
+                </div>
+                <div className="flex-1 max-w-2xl">
+
+                </div>
             </div>
         </div>
     );

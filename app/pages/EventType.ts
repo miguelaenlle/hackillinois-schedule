@@ -15,7 +15,7 @@ export type EventType = {
     description: string;
     startTime: number;
     endTime: number;
-    locations: Location[];
+    locations: LocationType[];
     eventType: string;
     points: number;
     isAsync: boolean;

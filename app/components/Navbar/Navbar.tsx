@@ -11,7 +11,7 @@ const Navbar: FC<{}> = (props) => {
     }
 
     return (
-        <div className="flex p-4 justify-between">
+        <div className="absolute top-0 bottom-0 flex w-full h-fit p-4 justify-between">
             <img
                 src={"/static/images/hackillinois-logo.png"}
                 alt="HackIllinois"
