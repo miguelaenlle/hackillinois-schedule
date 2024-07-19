@@ -55,7 +55,7 @@ export const useScheduleHook = () => {
                 // Retrieve events via API
                 newEvents = (TEMP_EVENT_DATA.events as { [key: string]: any }[]) as EventType[];
             } else {
-                const response = await fetchHook.get("event/");
+                // const response = await fetchHook.get("event/");
                 // const newEvents = response.data.events as Event[];
             }
             const newEventsWithMomentDate = newEvents.map((event) => (
