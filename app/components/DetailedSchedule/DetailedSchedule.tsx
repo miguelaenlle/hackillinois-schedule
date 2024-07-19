@@ -45,6 +45,8 @@ const DetailedSchedule: FC<{
             }
 
             if (newEventId) {
+                e.preventDefault();
+                props.onSelectEvent(undefined);
                 const element = document.getElementById(`event-${newEventId}`);
 
                 if (element) {
@@ -120,6 +122,12 @@ const DetailedSchedule: FC<{
         }
     }, [keyboardEventContext?.selectedMode])
 
+    const handleSelectEvent = (event: EventTypeWithMomentDates) => {
+        setHoveredEventId(event.eventId);
+        props.onSelectEvent(event);
+    }
+
+
     return (
         <>
             <motion.div
@@ -132,14 +140,14 @@ const DetailedSchedule: FC<{
                     handleResetHoveredEvent();
                 }}
             >
-                <h1 className="text-3xl mb-4">Day {props.selectedDayNumber + 1} Schedule - {props.selectedDay?.dayOfWeek ?? ""}</h1>
+                <h1 className="text-2xl md:text-3xl mb-4">Day {props.selectedDayNumber + 1} Schedule - {props.selectedDay?.dayOfWeek ?? ""}</h1>
                 {props.events.map((event, index) => (
                     <DetailedScheduleItem
                         isHovered={hoveredEventId === event.eventId}
                         key={`detailed-schedule-item-${event.eventId}`}
                         event={event}
                         onClick={() => {
-                            props.onSelectEvent(event);
+                            handleSelectEvent(event);
                         }}
                     />
                 ))}

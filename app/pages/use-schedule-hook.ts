@@ -17,6 +17,7 @@ export const useScheduleHook = () => {
 
     const [error, setError] = useState<string | undefined>();
     const [selectedEvent, setSelectedEvent] = useState<EventTypeWithMomentDates | undefined>();
+    const keyboardEventContext = useContext(KeyboardEventContext);
 
     const displayedEvents = useMemo(() => {
         if (events === undefined || eventDays === undefined) {
@@ -31,6 +32,7 @@ export const useScheduleHook = () => {
     const fetchHook = useFetchHook();
 
     const handleSelectDay = (day: number) => {
+        keyboardEventContext?.handleSetSelectedMode("daySelector");
         setSelectedDay(day);
     }
 
@@ -96,6 +98,8 @@ export const useScheduleHook = () => {
     }
 
     const handleSelectEvent = (event: EventTypeWithMomentDates | undefined) => {
+        keyboardEventContext?.handleSetSelectedMode("schedule");
+        
         setSelectedEvent(event);
     }
 
@@ -103,17 +107,17 @@ export const useScheduleHook = () => {
         handleLoadEvents();
     }, [])
 
-    const keyboardEventContext = useContext(KeyboardEventContext);
-
     const handleMove = useCallback((e: any) => {
         if (keyboardEventContext?.selectedMode !== "daySelector") {
             return;
         }
         if (e.key === "ArrowUp") {
+            e.preventDefault();
             if (selectedDay > 0) {
                 setSelectedDay(selectedDay - 1);
             }
         } else if (e.key === "ArrowDown") {
+            e.preventDefault();
             if (selectedDay < (eventDays?.length ?? 0) - 1) {
                 setSelectedDay(selectedDay + 1);
             }

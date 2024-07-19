@@ -2,6 +2,7 @@ import { createContext, FC, PropsWithChildren, useCallback, useEffect, useState 
 
 interface KeyboardEventContextInterface {
     selectedMode: "schedule" | "daySelector",
+    handleSetSelectedMode: (mode: "schedule" | "daySelector") => void,
     enterRefreshTrigger: number,
     escapeRefreshTrigger: number
 }
@@ -13,13 +14,19 @@ const KeyboardEventProvider: FC<PropsWithChildren<{}>> = (props) => {
     const [enterRefreshTrigger, setEnterRefreshTrigger] = useState<number>(0);
     const [escapeRefreshTrigger, setEscapeRefreshTrigger] = useState<number>(0);
 
+    const handleSetSelectedMode = (mode: "schedule" | "daySelector") => {
+        setSelectedMode(mode);
+    }
+
     const handleClickEnter = useCallback((e: any) => {
 
         console.log("Key", e.key);
 
         if (e.key === "Enter") {
+            e.preventDefault();
             setEnterRefreshTrigger((prev) => prev + 1);
         } else if (e.key === "Escape") {
+            e.preventDefault();
             setEscapeRefreshTrigger((prev) => prev + 1);
         }
     }, [setEnterRefreshTrigger])
@@ -34,8 +41,10 @@ const KeyboardEventProvider: FC<PropsWithChildren<{}>> = (props) => {
 
     const handleSwapMode = useCallback((e: any) => {
         if (e.key === "ArrowLeft") {
+            e.preventDefault();
             setSelectedMode("daySelector");
         } else if (e.key === "ArrowRight") {
+            e.preventDefault();
             setSelectedMode("schedule");
         }
     }, [setSelectedMode])
@@ -48,7 +57,7 @@ const KeyboardEventProvider: FC<PropsWithChildren<{}>> = (props) => {
     }, [handleSwapMode])
 
     return (
-        <KeyboardEventContext.Provider value={{ selectedMode, enterRefreshTrigger, escapeRefreshTrigger }}>
+        <KeyboardEventContext.Provider value={{ selectedMode, enterRefreshTrigger, escapeRefreshTrigger, handleSetSelectedMode }}>
             {props.children}
         </KeyboardEventContext.Provider>
     )
