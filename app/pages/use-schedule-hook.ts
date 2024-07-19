@@ -2,10 +2,10 @@
 import moment from "moment";
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { DaySelectItemType } from "../components/DaySelector/DaySelectItems";
-import { TEMP_EVENT_DATA } from "../constants/temp-event-data";
-import { EventType, EventTypeWithMomentDates } from "./EventType";
 import { KeyboardEventContext } from "../context/KeyboardEventContext";
 import { NavbarEnabledContext } from "../context/NavbarEnabledContext";
+import { EventType, EventTypeWithMomentDates } from "./EventType";
+import { getEvents } from "../utils/get-events";
 
 export const useScheduleHook = () => {
     const [selectedDay, setSelectedDay] = useState(0);
@@ -46,18 +46,7 @@ export const useScheduleHook = () => {
 
     const handleLoadEvents = async () => {
         try {
-            let newEvents: EventType[] = [];
-
-            const url = "https://adonix.hackillinois.org/event/";
-            const response = await fetch(url, {
-                headers: {
-                    Connection: "keep-alive",
-                    Accept: "*/*"
-                }
-            });
-            const json = await response.json();
-
-            newEvents = json.events as EventType[];
+            let newEvents: EventType[] = await getEvents();
             // } else {
             // const response = await fetchHook.get("event/");
             // const newEvents = response.data.events as Event[];
