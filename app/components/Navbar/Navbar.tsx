@@ -20,7 +20,7 @@ const Navbar: React.FC = (props) => {
     }
 
     return (
-        <div className={`fixed top-0 left-0 flex justify-between flex-col md:flex-row md:items-center transition-colors p-4 w-full z-50 ${opened ? "mobile:bg-zinc-50 mobile:bg-opacity-50 mobile:backdrop-blur-lg mobile:shadow-lg" : ""}`}>
+        <div className={`fixed top-0 left-0 flex justify-between flex-col md:flex-row md:items-center transition-colors p-4 w-full z-[45] ${opened ? "mobile:bg-zinc-50 mobile:bg-opacity-50 mobile:backdrop-blur-lg mobile:shadow-lg" : ""}`}>
             <div className={"flex justify-between"}>
                 <div className={`group flex items-center gap-0 hover:cursor-pointer`}>
                     <img
@@ -34,9 +34,13 @@ const Navbar: React.FC = (props) => {
                 <div className={"flex flex-col justify-center md:hidden mb-1"}>
                     {
                         opened ? (
-                            <FaXmark onClick={handleClose} className={`w-7 ${opened ? "text-zinc-800 hover:text-gray-600" : "text-zinc-400 hover:text-white"} transition-all hover:cursor-pointer`} />
+                            <div className="flex items-center justify-center w-12 h-12 hover:cursor-pointer" onClick={handleClose} >
+                                <FaXmark className={`w-8 h-8 ${opened ? "text-zinc-800 hover:text-gray-600" : "text-zinc-400 hover:text-white"} transition-all`} />
+                            </div>
                         ) : (
-                            <GiHamburgerMenu onClick={handleOpen} className={`w-7 text-zinc-400 hover:text-white transition-all hover:cursor-pointer`} />
+                            <div className="flex items-center justify-center w-12 h-12 hover:cursor-pointer" onClick={handleOpen} >
+                                <GiHamburgerMenu className={`w-8 h-8 text-zinc-400 hover:text-white transition-all hover:cursor-pointer`} />
+                            </div> 
                         )
                     }
                 </div>

@@ -3,7 +3,7 @@ import { FC } from "react";
 const HotAirBalloon: FC<{}> = (props) => {
     return (
         <div>
-            <svg width="94" height="141" viewBox="0 0 94 141" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="94" height="141" viewBox="0 0 94 141" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M41.2184 105.191L42.0554 126.304" stroke="#333248" strokeWidth="1.37342" strokeMiterlimit="10" />
                 <path d="M50.4259 105.191L49.5887 126.304" stroke="#333248" strokeWidth="1.37342" strokeMiterlimit="10" />
                 <path d="M56.2461 105.471L55.4089 126.583" stroke="#333248" strokeWidth="1.37342" strokeMiterlimit="10" />

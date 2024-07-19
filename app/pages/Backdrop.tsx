@@ -67,7 +67,11 @@ const Backdrop: React.FC<{}> = (props) => {
 
 
                 <div className="absolute left-0 w-full overflow-x-hidden bottom-0">
-                    <img src="/static/images/bg-mountains.png" className="w-full h-48 md:h-96" />
+                    <img
+                        src="/static/images/bg-mountains.png"
+                        className="w-full h-48 md:h-96"
+                        aria-hidden="true"
+                    />
                 </div>
                 <div className="hidden md:flex items-end absolute left-0 bottom-1 w-full z-10 gap-5">
                     <Carousel />

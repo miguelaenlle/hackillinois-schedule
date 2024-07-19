@@ -38,13 +38,13 @@ const EventLocationMapButton: React.FC<{
 
     if (props.event.mapImageUrl) {
         return (
-            <a href={props.event.mapImageUrl} target="_blank" rel="noreferrer" className="group flex items-center gap-1 hover:cursor-pointer">
+            <a href={props.event.mapImageUrl} target="_blank" rel="noreferrer" className="group flex items-center gap-1 hover:cursor-pointer p-4 pb-0 md:pb-4">
                 {mapButton}
             </a>
         );
     } else {
         return (
-            <div rel="noreferrer" className="flex items-center gap-1">
+            <div rel="noreferrer" className="flex items-center gap-1 p-4">
                 {mapButton}
             </div>
         );

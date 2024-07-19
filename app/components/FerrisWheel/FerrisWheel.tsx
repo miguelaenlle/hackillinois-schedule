@@ -31,7 +31,7 @@ const getPos = (r: number, count: number) => {
 const FerrisWheel: FC<{}> = (props) => {
 
     return (
-        <div className="container">
+        <div className="container" aria-hidden="true">
             <div className="ferris">
                 <div className="wheel">
                     <div className="roomsArea">

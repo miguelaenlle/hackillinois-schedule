@@ -11,10 +11,12 @@ const NavItem: React.FC<{
             href={props.link}
             target={props.redirect ? "_blank" : ""}
             className={
-                `opacity-75 text-md hover:cursor-pointer text-gray-50 hover:text-gray-300 ${props.opened ? "mobile:text-black mobile:hover:text-gray-600 mobile:text-lg" : ""} transition-all`
+                `opacity-75 text-lg md:align-middle hover:cursor-pointer text-gray-50 hover:text-gray-300 ${props.opened ? "mobile:text-black mobile:hover:text-gray-600 mobile:text-lg" : ""} transition-all`
             }
         >
-            {props.text}
+            <div className="flex items-center h-12">
+                {props.text}
+            </div>
         </a>
     );
 };

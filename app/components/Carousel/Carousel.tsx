@@ -4,7 +4,7 @@ import Horse from "./Horse";
 
 const Carousel: FC<{}> = (props) => {
     return (
-        <div className="relative">
+        <div className="relative" aria-hidden="true">
             <CarouselBase />
             <div className="absolute top-0 pt-36 w-[195px]">
                 <div className="flex flex-1 animate-horseBob">

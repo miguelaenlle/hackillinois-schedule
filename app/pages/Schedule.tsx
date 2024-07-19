@@ -39,6 +39,8 @@ const Schedule: FC<{}> = (props) => {
                             </>
                         )}
                         <DetailedSchedule
+                            selectedDayNumber={scheduleHook.selectedDay}
+                            selectedDay={(scheduleHook?.eventDays) ? scheduleHook.eventDays[scheduleHook.selectedDay] : undefined}
                             events={scheduleHook.displayedEvents ?? []}
                             selectedEvent={scheduleHook.selectedEvent}
                             onSelectEvent={scheduleHook.handleSelectEvent}

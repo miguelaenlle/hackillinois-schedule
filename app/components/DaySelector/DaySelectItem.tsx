@@ -14,7 +14,7 @@ const DaySelectItem: React.FC<{
             className={`${props.isSelected ? "bg-white shadow-md" : ""} p-2 md:p-3 flex-1 md:flex-none transition-all duration-150 bg-opacity-25 ${keyboardEventContext?.selectedMode === "daySelector" ? "bg-opacity-50" : ""} cursor-pointer rounded-lg`}
             onClick={props.onClick}
         >
-            <p className="font-bold text-xl">{props.daySelectItem.dayOfWeek}</p>
+            <h4 className="font-bold text-xl">{props.daySelectItem.dayOfWeek}</h4>
             <p className="text-sm lg:hidden">{props.daySelectItem.dateShort}</p>
             <p className="hidden lg:block text-md">{props.daySelectItem.fullDate}</p>
         </div>

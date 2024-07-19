@@ -1,11 +1,14 @@
+import { KeyboardEventContext } from "@/app/context/KeyboardEventContext";
 import { EventTypeWithMomentDates } from "@/app/pages/EventType";
 import { motion } from 'framer-motion';
 import { FC, useCallback, useContext, useEffect, useRef, useState } from "react";
+import { DaySelectItemType } from "../DaySelector/DaySelectItems";
 import DetailedScheduleItem from "./DetailedScheduleItem";
 import EventModal from "./EventModal";
-import KeyboardEventProvider, { KeyboardEventContext } from "@/app/context/KeyboardEventContext";
 
 const DetailedSchedule: FC<{
+    selectedDayNumber: number,
+    selectedDay?: DaySelectItemType,
     events: EventTypeWithMomentDates[],
     selectedEvent: EventTypeWithMomentDates | undefined,
     onSelectEvent: (event: EventTypeWithMomentDates | undefined) => void
@@ -117,13 +120,11 @@ const DetailedSchedule: FC<{
         }
     }, [keyboardEventContext?.selectedMode])
 
-
-
     return (
         <>
             <motion.div
                 ref={listRef}
-                className="w-full pt-[29px] md:pt-10 pb-20 h-full max-h-full overflow-y-auto scrollbar-none md:pr-8 animate-fadeIn px-3"
+                className="w-full pt-[33px] md:pt-10 pb-20 h-full max-h-full overflow-y-auto scrollbar-none md:pr-8 animate-fadeIn px-3"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
@@ -131,6 +132,7 @@ const DetailedSchedule: FC<{
                     handleResetHoveredEvent();
                 }}
             >
+                <h1 className="text-3xl mb-4">Day {props.selectedDayNumber + 1} Schedule - {props.selectedDay?.dayOfWeek ?? ""}</h1>
                 {props.events.map((event, index) => (
                     <DetailedScheduleItem
                         isHovered={hoveredEventId === event.eventId}

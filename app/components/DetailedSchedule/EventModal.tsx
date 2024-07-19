@@ -39,15 +39,15 @@ const EventModal: React.FC<{
             {props.event ? (
                 <div className="mt-2">
                     <div className="flex flex-col mb-3">
-                        <div className="grid md:grid-cols-2 p-2 md:p-4 bg-zinc-100 rounded-lg shadow-md gap-2 mb-2">
-                            <div className="items-center flex gap-1">
+                        <div className="grid md:grid-cols-2 bg-zinc-100 rounded-lg shadow-md gap-0 mb-2">
+                            <div className="items-center flex gap-1 p-4 pb-0">
                                 <MdAccessTimeFilled className="text-gray-500 w-4 h-4 md:w-5 md:h-5" />
                                 <p className="text-sm md:text-md text-gray-800">{startDateTime} - {endDateTime}</p>
                             </div>
                             {/* Link to the location */}
 
                             {categoryInformation && (
-                                <div className="flex items-center gap-1">
+                                <div className="flex items-center gap-1 p-4 pb-0">
                                     {categoryInformation.icon && <categoryInformation.icon className="w-4 h-4 md:w-5 md:h-5 text-gray-500" />}
                                     <p className="text-gray-800 text-sm md:text-md">{categoryInformation.displayText}</p>
                                 </div>
@@ -55,7 +55,7 @@ const EventModal: React.FC<{
                             <EventLocationMapButton
                                 event={props.event}
                             />
-                            <div className="flex items-center gap-[6px]">
+                            <div className="flex items-center gap-[6px] p-4">
                                 <FaArrowCircleUp className="text-gray-500 md:w-4 md:h-4 w-[0.9rem] h-[0.9rem] ml-[1.5px]" />
                                 <p className="text-gray-800 text-sm md:text-md">{props.event?.points} points</p>
                             </div>

@@ -84,6 +84,7 @@ export const useScheduleHook = () => {
             }
 
             setEvents(newEventsWithMomentDate);
+            console.log('uniqueDates', uniqueDates);
             setEventDays(uniqueDates);
         } catch (e) {
             if (e instanceof Error) {
@@ -129,9 +130,6 @@ export const useScheduleHook = () => {
             window.removeEventListener('keydown', handleMove);
         }
     }, [handleMove])
-
-
-
 
     return {
         mode,

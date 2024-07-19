@@ -4,6 +4,7 @@ const Tag: FC<{
     icon?: React.ReactNode
     text: string;
 
+    ariaLabel?: string;
     textSize?: string;
     bgColor?: string;
     opacity?: string;

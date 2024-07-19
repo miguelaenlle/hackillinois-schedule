@@ -15,7 +15,7 @@ export const Modal: FC<{
   return (
     <>
       <div
-        className={`justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none px-3 ${props.isOpen ? "" : "hidden"} transition-all`}
+        className={`justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none px-3 ${props.isOpen ? "" : "hidden"} transition-all pt-8`}
         onClick={props.onClose}
       >
         <div className="relative w-full max-w-2xl my-6 mx-auto">
@@ -38,9 +38,9 @@ export const Modal: FC<{
                       />
                     </div>
                   )}
-                  <p className="text-zinc-900 text-xl md:text-2xl font-bold mt-[1px]">{props.header}</p>
+                  <h1 className="text-zinc-900 text-xl md:text-2xl font-bold mt-[1px]">{props.header}</h1>
                 </div>
-                <FaXmark className="text-zinc-400 hover:text-zinc-800 transition-all hover:cursor-pointer w-5 min-w-5 h-5 min mt-1 md:mt-0" onClick={props.onClose} />
+                <FaXmark className="text-zinc-400 hover:text-zinc-800 transition-all hover:cursor-pointer w-7 min-w-7 h-7 mt-[1px] md:mt-0" onClick={props.onClose} />
               </div>
               {props.children}
             </div>

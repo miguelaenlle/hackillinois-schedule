@@ -2,7 +2,7 @@ import { FC } from "react";
 
 const CarouselBase: FC<{}> = (props) => {
     return (
-        <svg width="195" height="248" viewBox="0 0 195 248" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="195" height="248" viewBox="0 0 195 248" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M110.299 147.546H85.6777V221.066H110.299V147.546Z" fill="#D07827" />
             <path d="M107.488 147.546H88.4897V221.066H107.488V147.546Z" fill="#F8982F" />
             <path d="M102.652 147.546H93.3252V221.066H102.652V147.546Z" fill="#EFBD35" />
