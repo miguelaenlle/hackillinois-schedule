@@ -7,41 +7,51 @@ import ScheduleMode from "../components/DaySelector/ScheduleMode";
 import AlertBox from "../components/shared/AlertBox";
 import DetailedSchedule from "../components/DetailedSchedule/DetailedSchedule";
 
+// Blur effect from https://stackoverflow.com/questions/70970529/css-div-fade-scroll-styling
+
 const Schedule: FC<{}> = (props) => {
     const scheduleHook = useScheduleHook();
 
     return (
-        <div className="absolute top-0 left-0 w-full min-h-screen z-40">
-            <Navbar />
-            <div className="flex p-4 w-full h-screen gap-10">
-                <div className="flex flex-col justify-center flex-1 max-w-[600px]">
-                    <DaySelector
-                        selectedDay={scheduleHook.selectedDay}
-                        daySelectItems={scheduleHook.eventDays ?? []}
-                        onClickDay={scheduleHook.handleSelectDay}
-                    />
+        <>
+            <div className="absolute top-0 left-0 w-full min-h-screen z-30">
+                <div className="flex flex-col md:flex-row px-2 md:px-4 py-0 w-full h-screen gap-0 md:gap-10">
+                    <div className="flex flex-col justify-center md:flex-1 md:max-w-[600px] mt-20 px-3 md:px-0">
+                        <DaySelector
+                            selectedDay={scheduleHook.selectedDay}
+                            daySelectItems={scheduleHook.eventDays ?? []}
+                            onClickDay={scheduleHook.handleSelectDay}
+                        />
+                    </div>
+                    <div
+                        className="flex flex-col flex-[2.5] md:mt-20 overflow-y-auto overflow-x-visible mt-0"
+                        style={{
+                            "maskImage": scheduleHook.selectedEvent ? undefined : "linear-gradient(to bottom, transparent 0%, black 48px, black calc(100% - 48px), transparent 100%)"
+                        }}
+                    >
+                        {scheduleHook.error && (
+                            <>
+                                <br />
+                                <AlertBox
+                                    title="Whoops, an error occurred!"
+                                    message={scheduleHook.error}
+                                />
+                            </>
+                        )}
+                        <DetailedSchedule
+                            events={scheduleHook.displayedEvents ?? []}
+                            selectedEvent={scheduleHook.selectedEvent}
+                            onSelectEvent={scheduleHook.handleSelectEvent}
+                        />
 
-                </div>
-                <div className="flex flex-col flex-[2.5] pt-20">
-                    {scheduleHook.error && (
-                        <>
-                            <br />
-                            <AlertBox
-                                title="Whoops, an error occurred!"
-                                message={scheduleHook.error}
-                            />
-                        </>
-                    )}
-                    <DetailedSchedule
-                        events={scheduleHook.displayedEvents ?? []}
-                    />
+                    </div>
+                    <div className="flex-[0.25] md:flex-1 max-w-2xl">
 
-                </div>
-                <div className="flex-1 max-w-2xl">
-
+                    </div>
                 </div>
             </div>
-        </div>
+
+        </>
     );
 }
 export default Schedule

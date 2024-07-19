@@ -10,7 +10,7 @@ const DaySelector: FC<{
 }> = (props) => {
     return (
         <motion.div
-            className="flex flex-col gap-1 bg-zinc-900 backdrop-blur-lg bg-opacity-25 p-3 rounded-2xl shadow-md"
+            className="flex flex-row md:flex-col gap-1 sm:gap-5 md:gap-1 md:bg-zinc-900 md:bg-opacity-50 xl:bg-opacity-25 md:p-3 rounded-lg md:rounded-2xl md:shadow-md"
             initial={{ x: -50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}

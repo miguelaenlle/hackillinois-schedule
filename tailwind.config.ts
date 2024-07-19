@@ -35,6 +35,12 @@ const config: Config = {
         horseBob: 'horseBob 2s ease-in-out infinite',
         fadeIn: "fade-in 2s ease-in forwards",
       },
+      screens: {
+        "mobile": {
+          "max": "768px",
+        }
+      }
+      
     }
   },
   plugins: [

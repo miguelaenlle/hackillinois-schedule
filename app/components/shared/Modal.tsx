@@ -9,6 +9,7 @@ export const Modal: FC<{
   onClose: () => void,
   header: string,
   eventType?: string,
+  stringLights?: boolean,
   children: ReactNode
 }> = (props) => {
   return (
@@ -18,20 +19,31 @@ export const Modal: FC<{
         onClick={props.onClose}
       >
         <div className="relative w-full max-w-2xl my-6 mx-auto">
-          <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-zinc-50 outline-none focus:outline-none p-4" onClick={(e) => { e.stopPropagation() }}>
-            <div className="w-full flex items-center justify-between">
-              <div className="items-center flex justify-start gap-2">
-                {props.eventType && (
-                  <CategoryIcon
-                    category={props.eventType}
-                    dark
-                  />
-                )}
-                <p className="text-zinc-900 text-xl font-bold mt-[1px]">{props.header}</p>
+          <div className="border-0 rounded-lg relative flex flex-col w-full bg-zinc-50 outline-none focus:outline-none overflow-hidden" onClick={(e) => { e.stopPropagation() }}>
+            {/* {props.stringLights && (
+              <div className="w-full flex justify-start -mt-[1px]">
+                <StringLights />
               </div>
-              <FaXmark className="text-zinc-400 hover:text-zinc-800 transition-all hover:cursor-pointer w-5 h-5" onClick={props.onClose} />
+            )} */}
+            <div className={"p-4 pb-8 pt-5"}>
+              <div className="w-full flex items-start justify-between gap-7">
+                <div className="items-center flex justify-start gap-3">
+                  {props.eventType && (
+                    <div className="md:mt-0">
+                      <CategoryIcon
+                        category={props.eventType}
+                        dark
+                        customWidth={"w-6 md:w-8"}
+                        customHeight={"h-6 md:h-8"}
+                      />
+                    </div>
+                  )}
+                  <p className="text-zinc-900 text-xl md:text-2xl font-bold mt-[1px]">{props.header}</p>
+                </div>
+                <FaXmark className="text-zinc-400 hover:text-zinc-800 transition-all hover:cursor-pointer w-5 min-w-5 h-5 min mt-1 md:mt-0" onClick={props.onClose} />
+              </div>
+              {props.children}
             </div>
-            {props.children}
           </div>
         </div>
       </div>

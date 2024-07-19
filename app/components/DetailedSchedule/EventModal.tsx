@@ -2,10 +2,9 @@ import SCHEDULE_INFO from "@/app/constants/event-type-icons";
 import { EventTypeWithMomentDates } from "@/app/pages/EventType";
 import * as React from "react";
 import { FaArrowCircleUp } from "react-icons/fa";
-import { IoMdTime } from "react-icons/io";
-import { Modal } from "../shared/Modal";
-import { FaLocationDot } from "react-icons/fa6";
 import { MdAccessTimeFilled } from "react-icons/md";
+import { Modal } from "../shared/Modal";
+import EventLocationMapButton from "./EventLocationMapButton";
 
 const EventModal: React.FC<{
     event: EventTypeWithMomentDates | undefined;
@@ -29,50 +28,42 @@ const EventModal: React.FC<{
         }
     }, [props.event?.eventType])
 
-    const handleLoadMap = () => {
-        if (props.event?.mapImageUrl) {
-            window.open(props.event.mapImageUrl, "_blank");
-        }
-    }
-
     return (
         <Modal
             header={props.event?.name ?? ""}
             isOpen={props.event !== undefined}
             eventType={props.event?.eventType}
             onClose={props.onClose}
+            stringLights
         >
-            <div className="mt-2">
-                <div className="flex flex-col mb-5">
-                    <div className="grid grid-cols-2 p-2 bg-zinc-100 rounded-lg shadow-md gap-1">
-                        <div className="items-center flex gap-1">
-                            <MdAccessTimeFilled className="text-gray-500 w-5 h-5" />
-                            <p className="text-gray-800">{startDateTime} - {endDateTime}</p>
-                        </div>
-                        {/* Link to the location */}
+            {props.event ? (
+                <div className="mt-2">
+                    <div className="flex flex-col mb-3">
+                        <div className="grid md:grid-cols-2 p-2 md:p-4 bg-zinc-100 rounded-lg shadow-md gap-2 mb-2">
+                            <div className="items-center flex gap-1">
+                                <MdAccessTimeFilled className="text-gray-500 w-4 h-4 md:w-5 md:h-5" />
+                                <p className="text-sm md:text-md text-gray-800">{startDateTime} - {endDateTime}</p>
+                            </div>
+                            {/* Link to the location */}
 
-                        {categoryInformation && (
-                            <div className="flex items-center gap-1">
-                                {categoryInformation.icon && <categoryInformation.icon className="w-5 h-5 text-gray-500" />}
-                                <p className="text-gray-800">{categoryInformation.displayText}</p>
+                            {categoryInformation && (
+                                <div className="flex items-center gap-1">
+                                    {categoryInformation.icon && <categoryInformation.icon className="w-4 h-4 md:w-5 md:h-5 text-gray-500" />}
+                                    <p className="text-gray-800 text-sm md:text-md">{categoryInformation.displayText}</p>
+                                </div>
+                            )}
+                            <EventLocationMapButton
+                                event={props.event}
+                            />
+                            <div className="flex items-center gap-[6px]">
+                                <FaArrowCircleUp className="text-gray-500 md:w-4 md:h-4 w-[0.9rem] h-[0.9rem] ml-[1.5px]" />
+                                <p className="text-gray-800 text-sm md:text-md">{props.event?.points} points</p>
                             </div>
-                        )}
-                        <div className="group flex items-center gap-1 hover:cursor-pointer" onClick={handleLoadMap}>
-                            <FaLocationDot className="text-blue-400 w-5 h-5 group-hover:text-blue-500" />
-                            <div className="flex items-center">
-                                {props.event?.locations && props.event?.locations.length > 0 && (
-                                    <p className="text-blue-400 underline  group-hover:text-blue-500">{props.event.locations.map(loc => loc.description).join(", ")}</p>
-                                )}
-                            </div>
-                        </div>
-                        <div className="flex items-center gap-[6px]">
-                            <FaArrowCircleUp className="text-gray-500 w-4 h-4 ml-[1.5px]" />
-                            <p className="text-gray-800">{props.event?.points} points</p>
                         </div>
                     </div>
+                    <p className="text-zinc-900">{props.event?.description}</p>
                 </div>
-                <p className="text-zinc-900">{props.event?.description}</p>
-            </div>
+            ) : <></>}
         </Modal>
     );
 }
