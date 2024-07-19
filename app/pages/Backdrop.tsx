@@ -13,7 +13,7 @@ const Backdrop: React.FC<{}> = (props) => {
 
     return (
         <div className="relative w-screen h-screen overflow-hidden aria-hidden:*">
-            <div className="relative w-screen h-screen z-10 blur-[4px] scale-105 md:blur-none md:scale-100 overflow-hidden" style={{
+            <div className="relative w-screen h-screen z-10 blur-[2px] scale-105 md:blur-none md:scale-100 overflow-hidden" style={{
                 backgroundImage: "linear-gradient(180deg, #172B96 0%, #5B3980 15%, #9E476B 35%, #C6B751 100%)"
             }} >
                 {stars.map(star => (
@@ -39,7 +39,7 @@ const Backdrop: React.FC<{}> = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className="hidden md:flex  lex gap-8 2xl:gap-16 absolute top-36 left-8 h-screen">
+                <div className="hidden md:flex gap-8 2xl:gap-16 absolute top-36 left-8 h-screen">
                     <div className="animate-float">
                         <HotAirBalloon />
                     </div>
@@ -51,16 +51,17 @@ const Backdrop: React.FC<{}> = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className="hidden md:flex gap-8 2xl:gap-16 absolute top-48 right-8 h-screen">
+                <div className="hidden md:flex gap-5 2xl:gap-16 absolute top-36 right-8 h-screen">
 
-                    <div className="animate-float mt-20" style={{
-                        animationDelay: "0.5s"
-                    }}>
+                    <div className="animate-float mt-4">
                         <div className="scale-125">
                             <HotAirBalloon />
                         </div>
                     </div>
-                    <div className="animate-float mt-12">
+
+                    <div className="animate-float mt-10" style={{
+                        animationDelay: "0.5s"
+                    }}>
                         <HotAirBalloon />
                     </div>
                 </div>

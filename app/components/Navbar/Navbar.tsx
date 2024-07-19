@@ -26,7 +26,7 @@ const Navbar: React.FC = (props) => {
                     <img
                         src={"/static/images/hackillinois-logo.png"}
                         alt="HackIllinois"
-                        className="h-12 hover:cursor-pointer"
+                        className="h-8 md:h-12 hover:cursor-pointer"
                         onClick={handleRedirectToHackIllinois}
                     />
 

@@ -26,8 +26,8 @@ const config: Config = {
           '50%': { transform: 'translateY(-10px)' },
         },
         fadeIn: {
-            '0%': { opacity: "0%" },
-            '100%': { opacity: "100%" },
+          '0%': { opacity: "0%" },
+          '100%': { opacity: "100%" },
         }
       },
       animation: {
@@ -38,9 +38,12 @@ const config: Config = {
       screens: {
         "mobile": {
           "max": "768px",
+        },
+        "laptop": {
+          "raw": "(max-height: 768px)"
         }
       }
-      
+
     }
   },
   plugins: [
