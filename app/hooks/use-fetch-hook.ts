@@ -2,16 +2,13 @@ import { BASE_API_URL } from "../constants/api";
 
 export const useFetchHook = () => {
     const get = async (url: string) => {
-        console.log('BASE_API_URL + url', BASE_API_URL + url);
         const response = await fetch(BASE_API_URL + url, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
             }
         });
-        console.log("API Call complete", response);
         const data = await response.json();
-        console.log("data", data);
         return data;
     }
 

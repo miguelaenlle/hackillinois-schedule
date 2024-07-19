@@ -19,9 +19,6 @@ const KeyboardEventProvider: FC<PropsWithChildren<{}>> = (props) => {
     }
 
     const handleClickEnter = useCallback((e: any) => {
-
-        console.log("Key", e.key);
-
         if (e.key === "Enter") {
             e.preventDefault();
             setEnterRefreshTrigger((prev) => prev + 1);

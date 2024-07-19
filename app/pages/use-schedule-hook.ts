@@ -65,10 +65,6 @@ export const useScheduleHook = () => {
                     endTimeMoment: moment.unix(event.endTime)
                 }
             )).sort((a, b) => a.startTime - b.startTime);
-
-            console.log(newEventsWithMomentDate[0].startTimeMoment.format("hh:mm a"));
-
-
             let uniqueDates: DaySelectItemType[] = [];
 
             for (let i = 0; i < newEventsWithMomentDate.length; i++) {
@@ -86,7 +82,6 @@ export const useScheduleHook = () => {
             }
 
             setEvents(newEventsWithMomentDate);
-            console.log('uniqueDates', uniqueDates);
             setEventDays(uniqueDates);
         } catch (e) {
             if (e instanceof Error) {
@@ -99,7 +94,7 @@ export const useScheduleHook = () => {
 
     const handleSelectEvent = (event: EventTypeWithMomentDates | undefined) => {
         keyboardEventContext?.handleSetSelectedMode("schedule");
-        
+
         setSelectedEvent(event);
     }
 

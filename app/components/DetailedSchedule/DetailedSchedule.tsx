@@ -33,12 +33,10 @@ const DetailedSchedule: FC<{
             let newEventId: string | undefined;
 
             if (e.key === "ArrowUp") {
-                console.log("Up clicked.")
                 if (index > 0) {
                     newEventId = props.events[index - 1].eventId;
                 }
             } else if (e.key === "ArrowDown") {
-                console.log("Down clicked.")
                 if (index < props.events.length - 1) {
                     newEventId = props.events[index + 1].eventId;
                 }
