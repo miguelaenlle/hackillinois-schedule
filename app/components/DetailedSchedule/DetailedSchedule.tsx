@@ -103,9 +103,6 @@ const DetailedSchedule: FC<{
 
     useEffect(() => {
         if (keyboardEventContext?.selectedMode === "schedule") {
-            if (props.selectedEvent) {
-                return;
-            }
             if ((props.events?.length ?? 0) > 0) {
                 const newEventId = props.events[0].eventId;
                 setHoveredEventId(newEventId);

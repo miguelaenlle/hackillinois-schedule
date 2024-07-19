@@ -12,7 +12,7 @@ const EventLocationMapButton: React.FC<{
     ])
 
     const linkStyle = React.useMemo(() => {
-        return `${mapImageUrlAvailable ? "text-blue-400" : "text-gray-800"} ${mapImageUrlAvailable ? "group-hover:text-blue-500" : ""}`
+        return `${mapImageUrlAvailable ? "text-blue-500" : "text-gray-800"} ${mapImageUrlAvailable ? "group-hover:text-blue-600" : ""}`
     }, [mapImageUrlAvailable])
 
     const buttonStyle = React.useMemo(() => {

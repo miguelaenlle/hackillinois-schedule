@@ -47,7 +47,7 @@ const Schedule: FC<{}> = (props) => {
                         />
 
                     </div>
-                    <div className="flex-[0.25] md:flex-1 max-w-2xl">
+                    <div className="hidden xl:block flex-[0.25] md:flex-1 max-w-2xl">
 
                     </div>
                 </div>

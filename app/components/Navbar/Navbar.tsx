@@ -20,7 +20,7 @@ const Navbar: React.FC = (props) => {
     }
 
     return (
-        <div className={`fixed top-0 left-0 flex justify-between flex-col md:flex-row md:items-center transition-colors p-4 w-full z-[45] ${opened ? "mobile:bg-zinc-50 mobile:bg-opacity-50 mobile:backdrop-blur-lg mobile:shadow-lg" : ""}`}>
+        <div className={`fixed top-0 left-0 flex justify-between flex-col md:flex-row md:items-center transition-colors p-4 w-full z-40 ${opened ? "mobile:bg-zinc-50 mobile:bg-opacity-50 mobile:backdrop-blur-lg mobile:shadow-lg" : ""}`}>
             <div className={"flex justify-between"}>
                 <div className={`group flex items-center gap-0 hover:cursor-pointer`}>
                     <img

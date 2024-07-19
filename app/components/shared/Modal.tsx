@@ -15,7 +15,7 @@ export const Modal: FC<{
   return (
     <>
       <div
-        className={`justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none px-3 ${props.isOpen ? "" : "hidden"} transition-all pt-8`}
+        className={`fixed top-0 left-0 justify-center items-center flex overflow-x-hidden overflow-y-auto inset-0 z-50 outline-none focus:outline-none px-3 ${props.isOpen ? "" : "hidden"} transition-all pt-8`}
         onClick={props.onClose}
       >
         <div className="relative w-full max-w-2xl my-6 mx-auto">
