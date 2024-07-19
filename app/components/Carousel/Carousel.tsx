@@ -2,7 +2,7 @@ import { FC } from "react";
 import CarouselBase from "./CarouselBase";
 import Horse from "./Horse";
 
-const Carousel: FC<{}> = (props) => {
+const Carousel: FC<{}> = () => {
     return (
         <div className="relative" aria-hidden="true">
             <CarouselBase />

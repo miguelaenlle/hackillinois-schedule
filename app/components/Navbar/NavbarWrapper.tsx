@@ -1,8 +1,7 @@
 "use client";
-import { FC, PropsWithChildren, useContext, useEffect, useState } from "react";
-
-import Navbar from "./Navbar"
-import { NavbarEnabledContext } from "@/app/context/NavbarEnabledContext";
+import { FC, PropsWithChildren, useContext } from "react";
+import { NavbarEnabledContext } from "@/app/contexts/NavbarEnabledContext";
+import Navbar from "./Navbar";
 
 const NavbarWrapper: FC<PropsWithChildren<{}>> = (props) => {
     const navbarEnabledContext = useContext(NavbarEnabledContext);

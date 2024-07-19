@@ -1,9 +1,7 @@
-import { HiCodeBracketSquare } from "react-icons/hi2";
-import { PiForkKnifeFill } from "react-icons/pi";
-import { MdOutlineEventNote } from "react-icons/md";
-import { PiMicrophoneStageFill } from "react-icons/pi";
-import { GiPartyFlags, GiTalk } from "react-icons/gi";
 import { IconType } from "react-icons";
+import { GiPartyFlags, GiTalk } from "react-icons/gi";
+import { HiCodeBracketSquare } from "react-icons/hi2";
+import { PiForkKnifeFill, PiMicrophoneStageFill } from "react-icons/pi";
 import { TbCalendarEvent } from "react-icons/tb";
 
 const SCHEDULE_INFO: {

@@ -1,7 +1,4 @@
-export type NavbarButtonItemType = {
-    text: string;
-    link: string;
-}
+import { NavbarButtonItemType } from "../types/NavbarButtonItemType";
 
 export const NAVBAR_BUTTON_ITEMS: NavbarButtonItemType[] = [
     {

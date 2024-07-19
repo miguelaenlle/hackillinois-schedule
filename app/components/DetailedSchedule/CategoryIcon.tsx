@@ -1,8 +1,7 @@
-import * as React from "react"
-
 import SCHEDULE_INFO from "@/app/constants/event-type-icons";
+import { FC } from "react";
 
-const CategoryIcon: React.FC<{
+const CategoryIcon: FC<{
     category: string;
     dark?: boolean;
     customWidth?: string;

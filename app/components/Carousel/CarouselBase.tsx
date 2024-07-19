@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-const CarouselBase: FC<{}> = (props) => {
+const CarouselBase: FC<{}> = () => {
     return (
         <svg width="195" height="248" viewBox="0 0 195 248" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M110.299 147.546H85.6777V221.066H110.299V147.546Z" fill="#D07827" />

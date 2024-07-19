@@ -1,21 +1,20 @@
-import { EventTypeWithMomentDates } from "@/app/pages/EventType";
-import * as React from "react"
+import { EventTypeWithMomentDates } from "@/app/types/EventType";
+import { FC, useMemo } from "react";
 import { FaLocationDot } from "react-icons/fa6";
-const EventLocationMapButton: React.FC<{
+const EventLocationMapButton: FC<{
     event: EventTypeWithMomentDates
 }> = (props) => {
-
-    const mapImageUrlAvailable = React.useMemo(() => {
+    const mapImageUrlAvailable = useMemo(() => {
         return props.event.mapImageUrl ? true : false;
     }, [
         props.event.mapImageUrl
     ])
 
-    const linkStyle = React.useMemo(() => {
+    const linkStyle = useMemo(() => {
         return `${mapImageUrlAvailable ? "text-blue-500" : "text-gray-800"} ${mapImageUrlAvailable ? "group-hover:text-blue-600" : ""}`
     }, [mapImageUrlAvailable])
 
-    const buttonStyle = React.useMemo(() => {
+    const buttonStyle = useMemo(() => {
         if (mapImageUrlAvailable) {
             return linkStyle
         } else {
@@ -23,7 +22,7 @@ const EventLocationMapButton: React.FC<{
         }
     }, [mapImageUrlAvailable, linkStyle])
 
-    const mapButton = React.useMemo(() => {
+    const mapButton = useMemo(() => {
         return <>
             <FaLocationDot className={`${buttonStyle} w-4 h-4 md:w-5 md:h-5`} />
             <div className="flex items-center">

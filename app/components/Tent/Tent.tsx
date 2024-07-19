@@ -1,6 +1,6 @@
-import * as React from "react"
-const Tent: React.FC<{}> = (props) => {
+import { FC } from "react";
 
+const Tent: FC<{}> = () => {
     const height = 200;
     const width = (height * 428) / 394;
 

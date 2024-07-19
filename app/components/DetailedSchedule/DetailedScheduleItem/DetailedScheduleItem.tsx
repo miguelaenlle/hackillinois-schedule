@@ -1,27 +1,21 @@
-import { EventTypeWithMomentDates } from "@/app/pages/EventType";
-import { FC, useMemo } from "react";
-import Tag from "../shared/Tag";
-import CategoryIcon from "./CategoryIcon";
+import { EventTypeWithMomentDates } from "@/app/types/EventType";
+import { FC } from "react";
+import Tag from "../../shared/Tag";
+import CategoryIcon from "../CategoryIcon";
+import { useDetailedScheduleItemHook } from "./use-detailed-schedule-item-hook";
 
 const DetailedScheduleItem: FC<{
     isHovered?: boolean;
     event: EventTypeWithMomentDates;
     onClick: () => void;
 }> = (props) => {
-
-    const formattedStartTime = useMemo(() => {
-        return props.event.startTimeMoment.format("h:mm a");
-    }, [props.event.startTimeMoment])
-
-    const formattedEndTime = useMemo(() => {
-        return props.event.endTimeMoment.format("h:mm a");
-    }, [props.event.endTimeMoment])
+    const detailedScheduleItemHook = useDetailedScheduleItemHook(props.event);
 
     return (
         <div id={`event-${props.event.eventId}`} className="flex flex-col md:flex-row gap-1 md:gap-8 w-full">
             <div className="hidden md:block w-24 min-w-24 xl:w-36 border-r-4 border-r-amber-400 pt-1">
-                <p className="font-bold text-lg text-nowrap">{formattedStartTime}</p>
-                <p className="text-zinc-300 text-nowrap">{formattedEndTime}</p>
+                <p className="font-bold text-lg text-nowrap">{detailedScheduleItemHook.formattedStartTime}</p>
+                <p className="text-zinc-300 text-nowrap">{detailedScheduleItemHook.formattedEndTime}</p>
             </div>
             <div className={`flex flex-col bg-zinc-800 ${props.isHovered ? "bg-opacity-70 xl:bg-opacity-[55%]" : "bg-opacity-50 xl:bg-opacity-25"} hover:bg-opacity-80 xl:hover:bg-opacity-70 p-3 md:p-4 rounded-lg mb-3 md:mb-5 w-full hover:cursor-pointer transition-all`} onClick={props.onClick}>
                 <div className="flex gap-2 md:mb-2 items-center">

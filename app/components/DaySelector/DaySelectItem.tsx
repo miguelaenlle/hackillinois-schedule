@@ -1,13 +1,13 @@
-import * as React from "react"
-import { DaySelectItemType } from "./DaySelectItems";
-import { KeyboardEventContext } from "@/app/context/KeyboardEventContext";
-const DaySelectItem: React.FC<{
+import { FC, useContext } from "react";
+import { DaySelectItemType } from "../../types/DaySelectItemType";
+import { KeyboardEventContext } from "@/app/contexts/KeyboardEventContext";
+
+const DaySelectItem: FC<{
     isSelected: boolean;
     daySelectItem: DaySelectItemType;
     onClick: () => void;
 }> = (props) => {
-
-    const keyboardEventContext = React.useContext(KeyboardEventContext);
+    const keyboardEventContext = useContext(KeyboardEventContext);
 
     return (
         <div

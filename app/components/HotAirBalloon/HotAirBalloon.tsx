@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-const HotAirBalloon: FC<{}> = (props) => {
+const HotAirBalloon: FC<{}> = () => {
     return (
         <div>
             <svg width="94" height="141" viewBox="0 0 94 141" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">

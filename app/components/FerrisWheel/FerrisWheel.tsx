@@ -1,7 +1,10 @@
 "use client";
 
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import "./FerrisWheel.css";
+
+// Based on https://codepen.io/haoyang/pen/dyjVgBN
+
 /**
  * degree2Radian
  * @param degree
@@ -26,10 +29,7 @@ const getPos = (r: number, count: number) => {
     return res
 }
 
-// Based on https://codepen.io/haoyang/pen/dyjVgBN
-
-const FerrisWheel: FC<{}> = (props) => {
-
+const FerrisWheel: FC<{}> = () => {
     return (
         <div className="container" aria-hidden="true">
             <div className="ferris">

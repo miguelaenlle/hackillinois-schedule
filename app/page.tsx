@@ -1,9 +1,9 @@
 "use client";
 import NavbarWrapper from "./components/Navbar/NavbarWrapper";
-import KeyboardEventProvider from "./context/KeyboardEventContext";
-import NavbarEnabledProvider from "./context/NavbarEnabledContext";
-import Backdrop from "./pages/Backdrop";
-import Schedule from "./pages/Schedule";
+import KeyboardEventProvider from "./contexts/KeyboardEventContext";
+import NavbarEnabledProvider from "./contexts/NavbarEnabledContext";
+import Backdrop from "./pages/Backdrop/Backdrop";
+import Schedule from "./pages/Schedule/Schedule";
 
 export default function Home() {
   return (

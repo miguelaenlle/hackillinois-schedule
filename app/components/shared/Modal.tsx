@@ -20,11 +20,6 @@ export const Modal: FC<{
       >
         <div className="relative w-full max-w-2xl my-6 mx-auto">
           <div className="border-0 rounded-lg relative flex flex-col w-full bg-zinc-50 outline-none focus:outline-none overflow-hidden" onClick={(e) => { e.stopPropagation() }}>
-            {/* {props.stringLights && (
-              <div className="w-full flex justify-start -mt-[1px]">
-                <StringLights />
-              </div>
-            )} */}
             <div className={"p-4 pb-8 pt-5"}>
               <div className="w-full flex items-start justify-between gap-7">
                 <div className="items-center flex justify-start gap-3">

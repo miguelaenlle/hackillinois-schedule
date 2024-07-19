@@ -1,5 +1,6 @@
-import * as React from "react"
-const Slider: React.FC<{
+import { FC } from "react";
+
+const Slider: FC<{
     isRight: boolean;
     onClick: () => void;
 }> = (props) => {

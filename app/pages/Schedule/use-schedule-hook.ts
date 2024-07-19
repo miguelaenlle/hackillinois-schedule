@@ -1,22 +1,21 @@
 "use client";
 import moment from "moment";
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
-import { DaySelectItemType } from "../components/DaySelector/DaySelectItems";
-import { KeyboardEventContext } from "../context/KeyboardEventContext";
-import { NavbarEnabledContext } from "../context/NavbarEnabledContext";
-import { EventType, EventTypeWithMomentDates } from "./EventType";
-import { getEvents } from "../utils/get-events";
+import { DaySelectItemType } from "../../types/DaySelectItemType";
+import { KeyboardEventContext } from "../../contexts/KeyboardEventContext";
+import { NavbarEnabledContext } from "../../contexts/NavbarEnabledContext";
+import { EventType, EventTypeWithMomentDates } from "../../types/EventType";
+import { getEvents } from "../../utils/get-events";
 
 export const useScheduleHook = () => {
     const [selectedDay, setSelectedDay] = useState(0);
 
     const [mode, setMode] = useState<"overview" | "detailed">("overview");
-
     const [events, setEvents] = useState<EventTypeWithMomentDates[] | undefined>();
     const [eventDays, setEventDays] = useState<DaySelectItemType[] | undefined>();
-
     const [error, setError] = useState<string | undefined>();
     const [selectedEvent, setSelectedEvent] = useState<EventTypeWithMomentDates | undefined>();
+
     const keyboardEventContext = useContext(KeyboardEventContext);
 
     const displayedEvents = useMemo(() => {
@@ -47,7 +46,7 @@ export const useScheduleHook = () => {
     const handleLoadEvents = async () => {
         try {
             let newEvents: EventType[] = await getEvents();
-            
+
             const newEventsWithMomentDate = newEvents.map((event) => (
                 {
                     ...event,
@@ -83,14 +82,9 @@ export const useScheduleHook = () => {
     }
 
     const handleSelectEvent = (event: EventTypeWithMomentDates | undefined) => {
-        keyboardEventContext?.handleSetSelectedMode("schedule");
-
         setSelectedEvent(event);
+        keyboardEventContext?.handleSetSelectedMode("schedule");
     }
-
-    useEffect(() => {
-        handleLoadEvents();
-    }, [])
 
     const handleMove = useCallback((e: any) => {
         if (keyboardEventContext?.selectedMode !== "daySelector") {
@@ -112,6 +106,10 @@ export const useScheduleHook = () => {
         eventDays,
         keyboardEventContext?.selectedMode
     ])
+
+    useEffect(() => {
+        handleLoadEvents();
+    }, [])
 
     useEffect(() => {
         window.addEventListener('keydown', handleMove);

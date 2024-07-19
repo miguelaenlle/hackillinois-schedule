@@ -1,5 +1,6 @@
-import * as React from "react"
-const Horse: React.FC<{}> = (props) => {
+import { FC } from "react";
+
+const Horse: FC<{}> = () => {
     return (
         <div>
             <svg width="70" height="52" viewBox="0 0 70 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">

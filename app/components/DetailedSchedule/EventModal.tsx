@@ -1,20 +1,20 @@
 import SCHEDULE_INFO from "@/app/constants/event-type-icons";
-import { EventTypeWithMomentDates } from "@/app/pages/EventType";
-import * as React from "react";
+import { EventTypeWithMomentDates } from "@/app/types/EventType";
+import { FC, useMemo } from "react";
 import { FaArrowCircleUp } from "react-icons/fa";
 import { MdAccessTimeFilled } from "react-icons/md";
 import { Modal } from "../shared/Modal";
 import EventLocationMapButton from "./EventLocationMapButton";
 
-const EventModal: React.FC<{
+const EventModal: FC<{
     event: EventTypeWithMomentDates | undefined;
     onClose: () => void;
 }> = (props) => {
-    const startDateTime = React.useMemo(() => {
+    const startDateTime = useMemo(() => {
         return props.event?.startTimeMoment.format("dddd h:mm a");
     }, [props.event?.startTimeMoment]);
 
-    const endDateTime = React.useMemo(() => {
+    const endDateTime = useMemo(() => {
         if (props.event?.startTimeMoment.day() === props.event?.endTimeMoment.day()) {
             return props.event?.endTimeMoment.format("h:mm a");
         } else {
@@ -22,7 +22,7 @@ const EventModal: React.FC<{
         }
     }, [props.event?.endTimeMoment]);
 
-    const categoryInformation = React.useMemo(() => {
+    const categoryInformation = useMemo(() => {
         if (props.event?.eventType && SCHEDULE_INFO[props.event?.eventType]) {
             return SCHEDULE_INFO[props.event?.eventType];
         }
@@ -44,8 +44,6 @@ const EventModal: React.FC<{
                                 <MdAccessTimeFilled className="text-gray-500 w-4 h-4 md:w-5 md:h-5" />
                                 <p className="text-sm md:text-md text-gray-800">{startDateTime} - {endDateTime}</p>
                             </div>
-                            {/* Link to the location */}
-
                             {categoryInformation && (
                                 <div className="flex items-center gap-1 p-4 pb-0">
                                     {categoryInformation.icon && <categoryInformation.icon className="w-4 h-4 md:w-5 md:h-5 text-gray-500" />}

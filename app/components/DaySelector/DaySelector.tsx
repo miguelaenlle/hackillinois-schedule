@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { DaySelectItemType } from "./DaySelectItems";
+import { DaySelectItemType } from "../../types/DaySelectItemType";
 import DaySelectItem from "./DaySelectItem";
 import { motion } from 'framer-motion';
 

@@ -1,6 +1,7 @@
+import { FC } from "react";
 import Slider from "../shared/Slider";
-import * as React from "react"
-const ScheduleMode: React.FC<{
+
+const ScheduleMode: FC<{
     mode: "overview" | "detailed";
     onToggleMode: () => void;
 }> = (props) => {
