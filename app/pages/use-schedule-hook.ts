@@ -3,7 +3,6 @@ import moment from "moment";
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { DaySelectItemType } from "../components/DaySelector/DaySelectItems";
 import { TEMP_EVENT_DATA } from "../constants/temp-event-data";
-import { useFetchHook } from "../hooks/use-fetch-hook";
 import { EventType, EventTypeWithMomentDates } from "./EventType";
 import { KeyboardEventContext } from "../context/KeyboardEventContext";
 import { NavbarEnabledContext } from "../context/NavbarEnabledContext";
@@ -30,8 +29,6 @@ export const useScheduleHook = () => {
     }, [events, selectedDay])
 
 
-    const fetchHook = useFetchHook();
-
     const handleSelectDay = (day: number) => {
         keyboardEventContext?.handleSetSelectedMode("daySelector");
         setSelectedDay(day);
@@ -49,12 +46,18 @@ export const useScheduleHook = () => {
 
     const handleLoadEvents = async () => {
         try {
-            const isLocalhost = window.location.hostname === "localhost";
-
             let newEvents: EventType[] = [];
-            // if (isLocalhost) {
-            // Retrieve events via API
-            newEvents = (TEMP_EVENT_DATA.events as { [key: string]: any }[]) as EventType[];
+
+            const url = "https://adonix.hackillinois.org/event/";
+            const response = await fetch(url, {
+                headers: {
+                    Connection: "keep-alive",
+                    Accept: "*/*"
+                }
+            });
+            const json = await response.json();
+
+            newEvents = json.events as EventType[];
             // } else {
             // const response = await fetchHook.get("event/");
             // const newEvents = response.data.events as Event[];
