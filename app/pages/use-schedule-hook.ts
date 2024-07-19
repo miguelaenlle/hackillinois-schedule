@@ -6,6 +6,7 @@ import { TEMP_EVENT_DATA } from "../constants/temp-event-data";
 import { useFetchHook } from "../hooks/use-fetch-hook";
 import { EventType, EventTypeWithMomentDates } from "./EventType";
 import { KeyboardEventContext } from "../context/KeyboardEventContext";
+import { NavbarEnabledContext } from "../context/NavbarEnabledContext";
 
 export const useScheduleHook = () => {
     const [selectedDay, setSelectedDay] = useState(0);
@@ -129,6 +130,16 @@ export const useScheduleHook = () => {
             window.removeEventListener('keydown', handleMove);
         }
     }, [handleMove])
+
+    const navbarEnabledContext = useContext(NavbarEnabledContext);
+
+    useEffect(() => {
+        if (selectedEvent) {
+            navbarEnabledContext?.onSetNavbarEnabled(false);
+        } else {
+            navbarEnabledContext?.onSetNavbarEnabled(true);
+        }
+    }, [selectedEvent])
 
     return {
         mode,

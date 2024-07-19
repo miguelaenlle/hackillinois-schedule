@@ -4,6 +4,7 @@ import NavbarWrapper from "./components/Navbar/NavbarWrapper";
 import KeyboardEventProvider from "./context/KeyboardEventContext";
 import Backdrop from "./pages/Backdrop";
 import Schedule from "./pages/Schedule";
+import NavbarEnabledProvider from "./context/NavbarEnabledContext";
 
 export default function Home() {
   return (
@@ -14,11 +15,13 @@ export default function Home() {
         <link rel="icon" href="/static/favicon.ico" />
       </Head>
       <div>
-        <NavbarWrapper>
-          <KeyboardEventProvider>
-            <Schedule />
-          </KeyboardEventProvider>
-        </NavbarWrapper>
+        <NavbarEnabledProvider>
+          <NavbarWrapper>
+            <KeyboardEventProvider>
+              <Schedule />
+            </KeyboardEventProvider>
+          </NavbarWrapper>
+        </NavbarEnabledProvider>
         <Backdrop />
       </div>
     </>
