@@ -27,8 +27,10 @@ const EventLocationMapButton: React.FC<{
         return <>
             <FaLocationDot className={`${buttonStyle} w-4 h-4 md:w-5 md:h-5`} />
             <div className="flex items-center">
-                {props.event?.locations && props.event?.locations.length > 0 && (
+                {props.event?.locations && props.event?.locations.length > 0 ? (
                     <p className={`${linkStyle} ${mapImageUrlAvailable ? "underline" : ""} text-sm md:text-md`}>{props.event.locations.map(loc => loc.description).join(", ")}</p>
+                ) : (
+                    <p className="text-sm md:text-md text-gray-800">Location not specified</p>
                 )}
             </div>
         </>
@@ -44,7 +46,7 @@ const EventLocationMapButton: React.FC<{
         );
     } else {
         return (
-            <div rel="noreferrer" className="flex items-center gap-1 p-4">
+            <div rel="noreferrer" className="flex items-center gap-1 p-4 pb-0 md:pb-4">
                 {mapButton}
             </div>
         );

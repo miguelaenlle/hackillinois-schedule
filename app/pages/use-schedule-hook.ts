@@ -47,10 +47,7 @@ export const useScheduleHook = () => {
     const handleLoadEvents = async () => {
         try {
             let newEvents: EventType[] = await getEvents();
-            // } else {
-            // const response = await fetchHook.get("event/");
-            // const newEvents = response.data.events as Event[];
-            // }
+            
             const newEventsWithMomentDate = newEvents.map((event) => (
                 {
                     ...event,
