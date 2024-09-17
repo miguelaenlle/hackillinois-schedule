@@ -26,7 +26,7 @@ const DetailedSchedule: FC<{
             <TypeText
                 key={Math.random()}
                 text={`Day ${props.selectedDayNumber + 1} - ${props.selectedDay?.dayOfWeek ?? ""}`}
-                speed={50}
+                speed={70}
                 className="text-2xl md:text-3xl font-mono"
             />
         </div>
@@ -38,7 +38,7 @@ const DetailedSchedule: FC<{
         <>
             <motion.div
                 ref={detailedScheduleHook.listRef}
-                className="w-full pt-[14px] pb-20 h-full max-h-full overflow-y-auto scrollbar-none md:pr-8 animate-fadeIn px-3"
+                className="w-full pt-[14px] pb-20 overflow-y-auto scrollbar-none md:pr-8 animate-fadeIn px-3"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
@@ -46,6 +46,13 @@ const DetailedSchedule: FC<{
                     detailedScheduleHook.handleResetHoveredEvent();
                 }}
             >
+                <div className="min-h-7">
+                    <TypeText
+                        text={`TIME JUMP DESTINATION DETAILS`}
+                        speed={40}
+                        className="text-sm font-mono text-cyan-500"
+                    />
+                </div>
                 {scheduleHeader}
                 <div className="mb-4"></div>
 

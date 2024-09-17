@@ -15,7 +15,7 @@ const Schedule: FC<{}> = () => {
 
     return (
         <>
-            <div className="absolute top-0 left-0 w-full h-screen overflow-hidden z-30">
+            <div className={"absolute z-10 w-full p-5 pb-20 h-screen"}>
                 <div className="flex flex-col md:flex-row px-2 md:px-4 py-0 w-full h-screen gap-0 md:gap-6 xl:gap-10">
                     <ScheduleDaySelectorSegment
                         loading={scheduleHook.loading}
