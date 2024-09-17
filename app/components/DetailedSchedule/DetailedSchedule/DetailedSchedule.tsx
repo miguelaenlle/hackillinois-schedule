@@ -38,7 +38,7 @@ const DetailedSchedule: FC<{
         <>
             <motion.div
                 ref={detailedScheduleHook.listRef}
-                className="w-full pt-7 md:pt-[14px] pb-20 overflow-y-auto scrollbar-none md:pr-8 animate-fadeIn px-3"
+                className="w-full pt-7 md:pt-[14px] pb-20 overflow-y-auto scrollbar-none md:pr-8 animate-fadeIn md:px-3"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}

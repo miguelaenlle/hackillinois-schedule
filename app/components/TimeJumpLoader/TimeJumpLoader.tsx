@@ -36,7 +36,7 @@ const TimeJumpLoader: React.FC<{
 
 
     return (
-        <div className="flex flex-col justify-center items-center h-full gap-2">
+        <div className="flex flex-col justify-center items-center h-full gap-2 mb-20">
             <TypeAnimation
                 sequence={[
                     // Same substring at the start will only be typed out once, initially
