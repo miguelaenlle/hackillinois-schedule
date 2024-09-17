@@ -1,5 +1,5 @@
 import { EventTypeWithMomentDates } from "@/app/types/EventType";
-import { FC } from "react";
+import { FC, use, useMemo } from "react";
 import Tag from "../../shared/Tag";
 import CategoryIcon from "../CategoryIcon";
 import { useDetailedScheduleItemHook } from "./use-detailed-schedule-item-hook";
@@ -10,6 +10,9 @@ const DetailedScheduleItem: FC<{
     onClick: () => void;
 }> = (props) => {
     const detailedScheduleItemHook = useDetailedScheduleItemHook(props.event);
+    const scheduleItemStyle = useMemo(() => {
+        return `flex flex-col bg-zinc-600 ${props.isHovered ? "bg-opacity-30 bg-zinc-200" : "bg-opacity-50 hover:bg-opacity-80"} p-3 md:p-4 rounded-lg mb-3 md:mb-5 w-full hover:cursor-pointer transition-all`;
+    }, [props.isHovered])
 
     return (
         <div id={`event-${props.event.eventId}`} className="flex flex-col md:flex-row gap-1 md:gap-8 w-full">
@@ -17,7 +20,7 @@ const DetailedScheduleItem: FC<{
                 <p className="text-lg text-nowrap font-mono">{detailedScheduleItemHook.formattedStartTime}</p>
                 <p className="text-zinc-300 text-nowrap font-mono">{detailedScheduleItemHook.formattedEndTime}</p>
             </div>
-            <div className={`flex flex-col bg-zinc-600 ${props.isHovered ? "bg-opacity-30 bg-zinc-200" : "bg-opacity-50 hover:bg-opacity-80"} p-3 md:p-4 rounded-lg mb-3 md:mb-5 w-full hover:cursor-pointer transition-all`} onClick={props.onClick}>
+            <div className={scheduleItemStyle} onClick={props.onClick}>
                 <div className="flex gap-2 md:mb-2 items-center">
                     <CategoryIcon
                         category={props.event.eventType}

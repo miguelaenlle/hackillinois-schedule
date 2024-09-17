@@ -22,13 +22,13 @@ const DetailedSchedule: FC<{
     )
 
     const scheduleHeader = useMemo(() => {
-        return <div className="min-h-9">
+        return <div className={"h-[2rem] md:h-[2.25rem]"}>
             <TypeText
-                key={Math.random()}
-                text={`Day ${props.selectedDayNumber + 1} - ${props.selectedDay?.dayOfWeek ?? ""}`}
-                speed={70}
-                className="text-2xl md:text-3xl font-mono"
-            />
+                    key={Math.random()}
+                    text={`Day ${props.selectedDayNumber + 1} - ${props.selectedDay?.dayOfWeek ?? ""}`}
+                    speed={70}
+                    className="text-2xl md:text-3xl font-mono"
+                />
         </div>
     }, [props.selectedDayNumber, props.selectedDay]);
 
@@ -46,13 +46,14 @@ const DetailedSchedule: FC<{
                     detailedScheduleHook.handleResetHoveredEvent();
                 }}
             >
-                <div className="min-h-8">
+                <div className="h-[1.25rem]">
                     <TypeText
                         text={`TIME JUMP DESTINATION DETAILS:`}
                         speed={40}
                         className="text-sm font-mono text-cyan-400"
                     />
                 </div>
+                <div className="mb-2"></div>
                 {scheduleHeader}
                 <div className="mb-4"></div>
 
