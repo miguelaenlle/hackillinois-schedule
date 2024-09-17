@@ -1,6 +1,8 @@
 # HackIllinois Schedule Site
 Developed by Miguel Aenlle
 
+Live Link: https://hackillinoisschedule.vercel.app/
+
 ## Getting Started
 
 First, run the development server:
