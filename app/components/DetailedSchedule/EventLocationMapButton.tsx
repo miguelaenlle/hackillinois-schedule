@@ -1,8 +1,10 @@
 import { EventTypeWithMomentDates } from "@/app/types/EventType";
 import { FC, useMemo } from "react";
 import { FaLocationDot } from "react-icons/fa6";
+import TypeText from "../shared/TypeText";
 const EventLocationMapButton: FC<{
-    event: EventTypeWithMomentDates
+    event: EventTypeWithMomentDates,
+    speed?: number
 }> = (props) => {
     const mapImageUrlAvailable = useMemo(() => {
         return props.event.mapImageUrl ? true : false;
@@ -27,9 +29,17 @@ const EventLocationMapButton: FC<{
             <FaLocationDot className={`${buttonStyle} w-4 h-4 md:w-5 md:h-5`} />
             <div className="flex items-center">
                 {props.event?.locations && props.event?.locations.length > 0 ? (
-                    <p className={`${linkStyle} ${mapImageUrlAvailable ? "underline" : ""} text-sm md:text-md`}>{props.event.locations.map(loc => loc.description).join(", ")}</p>
+                    <TypeText
+                        speed={props.speed ?? 90}
+                        text={props.event.locations.map(loc => loc.description).join(", ")}
+                        className={`${linkStyle} ${mapImageUrlAvailable ? "underline" : ""} font-mono text-sm`}
+                    />
                 ) : (
-                    <p className="text-sm md:text-md text-gray-800">Location not specified</p>
+                    <TypeText
+                        speed={props.speed ?? 90}
+                        text="Location not specified"
+                        className="text-sm text-gray-600 font-mono"
+                    />
                 )}
             </div>
         </>

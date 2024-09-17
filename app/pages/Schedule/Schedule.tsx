@@ -18,17 +18,22 @@ const Schedule: FC<{}> = () => {
             <div className="absolute top-0 left-0 w-full h-screen overflow-hidden z-30">
                 <div className="flex flex-col md:flex-row px-2 md:px-4 py-0 w-full h-screen gap-0 md:gap-6 xl:gap-10">
                     <ScheduleDaySelectorSegment
+                        loading={scheduleHook.loading}
+                        splashLoading={scheduleHook.splashLoading}
                         eventDays={scheduleHook.eventDays}
                         selectedDay={scheduleHook.selectedDay}
                         handleSelectDay={scheduleHook.handleSelectDay}
                     />
                     <ScheduleInformationSegment
+                        loading={scheduleHook.loading}
+                        splashLoading={scheduleHook.splashLoading}
                         error={scheduleHook.error}
                         selectedDay={scheduleHook.selectedDay}
                         selectedEvent={scheduleHook.selectedEvent}
                         displayedEvents={scheduleHook.displayedEvents}
                         eventDays={scheduleHook.eventDays}
                         handleSelectEvent={scheduleHook.handleSelectEvent}
+                        onSkipSplashLoader={scheduleHook.handleSkipSplashLoader}
                     />
                     <ScheduleSpacerSegment />
                 </div>

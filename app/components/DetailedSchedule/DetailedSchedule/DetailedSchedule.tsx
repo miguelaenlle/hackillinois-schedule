@@ -1,10 +1,12 @@
 import { EventTypeWithMomentDates } from "@/app/types/EventType";
 import { motion } from 'framer-motion';
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { DaySelectItemType } from "../../../types/DaySelectItemType";
 import DetailedScheduleItem from "../DetailedScheduleItem/DetailedScheduleItem";
 import EventModal from "../EventModal";
 import { useDetailedScheduleHook } from "./use-detailed-schedule-hook";
+import { TypeAnimation } from "react-type-animation";
+import TypeText from "../../shared/TypeText";
 
 const DetailedSchedule: FC<{
     selectedDayNumber: number,
@@ -19,6 +21,19 @@ const DetailedSchedule: FC<{
         props.onSelectEvent
     )
 
+    const scheduleHeader = useMemo(() => {
+        return <div className="min-h-9">
+            <TypeText
+                key={Math.random()}
+                text={`Day ${props.selectedDayNumber + 1} - ${props.selectedDay?.dayOfWeek ?? ""}`}
+                speed={50}
+                className="text-2xl md:text-3xl font-mono"
+            />
+        </div>
+    }, [props.selectedDayNumber, props.selectedDay]);
+
+
+
     return (
         <>
             <motion.div
@@ -31,7 +46,9 @@ const DetailedSchedule: FC<{
                     detailedScheduleHook.handleResetHoveredEvent();
                 }}
             >
-                <h1 className="text-2xl md:text-3xl mb-4">Day {props.selectedDayNumber + 1} Schedule - {props.selectedDay?.dayOfWeek ?? ""}</h1>
+                {scheduleHeader}
+                <div className="mb-4"></div>
+
                 {props.events.map((event, index) => (
                     <DetailedScheduleItem
                         isHovered={detailedScheduleHook.hoveredEventId === event.eventId}

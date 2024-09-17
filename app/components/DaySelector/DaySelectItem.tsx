@@ -16,7 +16,7 @@ const DaySelectItem: FC<{
         >
             <h4 className="font-bold text-xl">{props.daySelectItem.dayOfWeek}</h4>
             <p className="text-sm lg:hidden">{props.daySelectItem.dateShort}</p>
-            <p className="hidden lg:block text-md">{props.daySelectItem.fullDate}</p>
+            <p className="hidden lg:block text-md font-mono text-zinc-100">{props.daySelectItem.fullDate}</p>
         </div>
     );
 }

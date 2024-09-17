@@ -15,6 +15,8 @@ export const useScheduleHook = () => {
     const [eventDays, setEventDays] = useState<DaySelectItemType[] | undefined>();
     const [error, setError] = useState<string | undefined>();
     const [selectedEvent, setSelectedEvent] = useState<EventTypeWithMomentDates | undefined>();
+    const [loading, setLoading] = useState(false);
+    const [splashLoading, setSplashLoading] = useState(true);
 
     const keyboardEventContext = useContext(KeyboardEventContext);
 
@@ -44,6 +46,7 @@ export const useScheduleHook = () => {
     }
 
     const handleLoadEvents = async () => {
+        setLoading(true);
         try {
             let newEvents: EventType[] = await getEvents();
 
@@ -78,6 +81,8 @@ export const useScheduleHook = () => {
             } else {
                 setError("An unknown error occurred");
             }
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -107,6 +112,10 @@ export const useScheduleHook = () => {
         keyboardEventContext?.selectedMode
     ])
 
+    const handleSkipSplashLoader = () => {
+        setSplashLoading(false);
+    }
+
     useEffect(() => {
         handleLoadEvents();
     }, [])
@@ -128,7 +137,18 @@ export const useScheduleHook = () => {
         }
     }, [selectedEvent])
 
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setSplashLoading(false);
+        }, 7000);
+        return () => {
+            clearTimeout(timeout);
+        }
+    }, [])
+
     return {
+        loading,
+        splashLoading,
         mode,
         selectedDay,
         displayedEvents,
@@ -138,6 +158,7 @@ export const useScheduleHook = () => {
 
         handleSelectDay,
         handleToggleMode,
-        handleSelectEvent
+        handleSelectEvent,
+        handleSkipSplashLoader
     }
 }

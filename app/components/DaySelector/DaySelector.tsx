@@ -15,16 +15,19 @@ const DaySelector: FC<{
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
         >
-            {props.daySelectItems.map((daySelectItem, index) => (
-                <DaySelectItem
-                    key={`day-select-item-${index}`}
-                    isSelected={props.selectedDay === index}
-                    daySelectItem={daySelectItem}
-                    onClick={() => {
-                        props.onClickDay(index);
-                    }}
-                />
-            ))}
+            <>
+                <p className="font-mono text-cyan-400 mb-2">TIME JUMP DESTINATION:</p>
+                {props.daySelectItems.map((daySelectItem, index) => (
+                    <DaySelectItem
+                        key={`day-select-item-${index}`}
+                        isSelected={props.selectedDay === index}
+                        daySelectItem={daySelectItem}
+                        onClick={() => {
+                            props.onClickDay(index);
+                        }}
+                    />
+                ))}
+            </>
         </motion.div>
     );
 }
