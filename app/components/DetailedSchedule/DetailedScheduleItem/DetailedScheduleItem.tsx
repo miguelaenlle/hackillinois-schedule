@@ -11,7 +11,7 @@ const DetailedScheduleItem: FC<{
 }> = (props) => {
     const detailedScheduleItemHook = useDetailedScheduleItemHook(props.event);
     const scheduleItemStyle = useMemo(() => {
-        return `flex flex-col bg-zinc-600 ${props.isHovered ? "bg-opacity-30 bg-zinc-200" : "bg-opacity-50 hover:bg-opacity-80"} p-3 md:p-4 rounded-lg mb-3 md:mb-5 w-full hover:cursor-pointer transition-all`;
+        return `flex flex-col bg-zinc-500 ${props.isHovered ? "bg-opacity-80 bg-zinc-200" : "bg-opacity-50 hover:bg-opacity-80"} p-3 md:p-4 rounded-lg mb-3 md:mb-5 w-full hover:cursor-pointer transition-all`;
     }, [props.isHovered])
 
     return (
