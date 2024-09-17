@@ -46,9 +46,9 @@ const DetailedSchedule: FC<{
                     detailedScheduleHook.handleResetHoveredEvent();
                 }}
             >
-                <div className="min-h-7">
+                <div className="min-h-8">
                     <TypeText
-                        text={`TIME JUMP DESTINATION DETAILS`}
+                        text={`TIME JUMP DESTINATION DETAILS:`}
                         speed={40}
                         className="text-sm font-mono text-cyan-400"
                     />
