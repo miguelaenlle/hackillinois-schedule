@@ -1,7 +1,6 @@
 import { FC } from "react";
 const Backdrop: FC<{}> = () => {
     return (
-
         <video
             muted
             autoPlay

@@ -1,12 +1,9 @@
 "use client";
-import { FC } from "react";
-import DaySelector from "../../components/DaySelector/DaySelector";
-import DetailedSchedule from "../../components/DetailedSchedule/DetailedSchedule/DetailedSchedule";
-import AlertBox from "../../components/shared/AlertBox";
-import { useScheduleHook } from "./use-schedule-hook";
 import ScheduleDaySelectorSegment from "@/app/components/ScheduleSegments/ScheduleDaySelectorSegment";
 import ScheduleInformationSegment from "@/app/components/ScheduleSegments/ScheduleInformationSegment";
 import ScheduleSpacerSegment from "@/app/components/ScheduleSegments/ScheduleSpacerSegment";
+import { FC } from "react";
+import { useScheduleHook } from "./use-schedule-hook";
 
 // Blur effect from https://stackoverflow.com/questions/70970529/css-div-fade-scroll-styling
 

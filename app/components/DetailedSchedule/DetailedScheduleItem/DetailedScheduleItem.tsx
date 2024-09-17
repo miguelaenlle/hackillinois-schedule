@@ -17,7 +17,7 @@ const DetailedScheduleItem: FC<{
                 <p className="text-lg text-nowrap font-mono">{detailedScheduleItemHook.formattedStartTime}</p>
                 <p className="text-zinc-300 text-nowrap font-mono">{detailedScheduleItemHook.formattedEndTime}</p>
             </div>
-            <div className={`flex flex-col bg-zinc-800 ${props.isHovered ? "bg-opacity-70 xl:bg-opacity-[55%]" : "bg-opacity-50 xl:bg-opacity-25"} hover:bg-opacity-80 xl:hover:bg-opacity-70 p-3 md:p-4 rounded-lg mb-3 md:mb-5 w-full hover:cursor-pointer transition-all`} onClick={props.onClick}>
+            <div className={`flex flex-col bg-zinc-600 ${props.isHovered ? "bg-opacity-30 bg-zinc-200" : "bg-opacity-50 hover:bg-opacity-80"} p-3 md:p-4 rounded-lg mb-3 md:mb-5 w-full hover:cursor-pointer transition-all`} onClick={props.onClick}>
                 <div className="flex gap-2 md:mb-2 items-center">
                     <CategoryIcon
                         category={props.event.eventType}

@@ -47,7 +47,7 @@ const TimeJumpLoader: React.FC<{
                 ]}
                 wrapper="span"
                 speed={50}
-                className="text-xl font-mono text-teal-500"
+                className="text-lg md:text-xl font-mono text-teal-500 text-center"
                 repeat={1}
                 cursor={false}
             />

@@ -11,7 +11,7 @@ const DaySelectItem: FC<{
 
     return (
         <div
-            className={`${props.isSelected ? "bg-white shadow-md" : ""} mt-3 md:mt-0 p-2 md:p-3 flex-1 md:flex-none transition-all duration-150 bg-opacity-25 ${keyboardEventContext?.selectedMode === "daySelector" ? "bg-opacity-[35%]" : ""} cursor-pointer rounded-lg`}
+            className={`${props.isSelected ? "bg-white shadow-md" : ""} md:mt-0 p-2 md:p-3 flex-1 md:flex-none transition-all duration-150 bg-opacity-25 ${keyboardEventContext?.selectedMode === "daySelector" ? "bg-opacity-[35%]" : ""} cursor-pointer rounded-lg`}
             onClick={props.onClick}
         >
             <h4 className="font-bold text-xl">{props.daySelectItem.dayOfWeek}</h4>
