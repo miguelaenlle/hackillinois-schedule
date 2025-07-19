@@ -3,14 +3,13 @@ import * as React from "react"
 import DaySelector from "../DaySelector/DaySelector";
 const ScheduleDaySelectorSegment: React.FC<{
     loading: boolean,
-    splashLoading: boolean,
     eventDays: DaySelectItemType[] | undefined,
     selectedDay: number,
     handleSelectDay: (day: number) => void
 }> = (props) => {
     return (
-        <div className={`flex flex-col justify-center md:flex-1 md:max-w-[600px] mt-16 md:px-3 md:px-0 pb-3 md:pb-0 ${(props.loading || props.splashLoading) ? "hidden xl:block" : ""}`}>
-            {props.eventDays && (props.eventDays.length > 0) && !(props.loading || props.splashLoading) && (
+        <div className={`flex flex-row mt-16`}>
+            {props.eventDays && (props.eventDays.length > 0) && !(props.loading) && (
                 <DaySelector
                     selectedDay={props.selectedDay}
                     daySelectItems={props.eventDays}

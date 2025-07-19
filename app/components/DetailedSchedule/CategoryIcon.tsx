@@ -11,7 +11,7 @@ const CategoryIcon: FC<{
 
     return (
         <div>
-            {iconData && <iconData.icon className={`${props.customWidth ?? "w-6"} ${props.customHeight ?? "h-6"} ${props.dark ? "text-amber-600" : "text-amber-500"}`} aria-hidden={true} />}
+            {iconData && <iconData.icon className={`${props.customWidth ?? "w-6"} ${props.customHeight ?? "h-6"} ${props.dark ? "text-amber-600" : "text-white"}`} aria-hidden={true} />}
         </div>
     );
 }

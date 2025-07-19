@@ -16,7 +16,6 @@ export const useScheduleHook = () => {
     const [error, setError] = useState<string | undefined>();
     const [selectedEvent, setSelectedEvent] = useState<EventTypeWithMomentDates | undefined>();
     const [loading, setLoading] = useState(false);
-    const [splashLoading, setSplashLoading] = useState(true);
 
     const keyboardEventContext = useContext(KeyboardEventContext);
 
@@ -62,7 +61,7 @@ export const useScheduleHook = () => {
             for (let i = 0; i < newEventsWithMomentDate.length; i++) {
                 const event = newEventsWithMomentDate[i];
                 const dayOfWeek = event.startTimeMoment.format("dddd");
-                const dateShort = event.startTimeMoment.format("MMM D, YYYY");
+                const dateShort = event.startTimeMoment.format("MM/DD");
                 const date = event.startTimeMoment.format("MMMM D, YYYY");
                 if (!uniqueDates.some((daySelectItem) => daySelectItem.fullDate === date)) {
                     uniqueDates.push({
@@ -112,10 +111,6 @@ export const useScheduleHook = () => {
         keyboardEventContext?.selectedMode
     ])
 
-    const handleSkipSplashLoader = () => {
-        setSplashLoading(false);
-    }
-
     useEffect(() => {
         handleLoadEvents();
     }, [])
@@ -137,18 +132,8 @@ export const useScheduleHook = () => {
         }
     }, [selectedEvent])
 
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-            setSplashLoading(false);
-        }, 7000);
-        return () => {
-            clearTimeout(timeout);
-        }
-    }, [])
-
     return {
         loading,
-        splashLoading,
         mode,
         selectedDay,
         displayedEvents,
@@ -159,6 +144,5 @@ export const useScheduleHook = () => {
         handleSelectDay,
         handleToggleMode,
         handleSelectEvent,
-        handleSkipSplashLoader
     }
 }

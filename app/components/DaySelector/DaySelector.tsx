@@ -10,18 +10,17 @@ const DaySelector: FC<{
 }> = (props) => {
     return (
         <>
-            <p className="font-mono text-cyan-400 mb-4 block md:hidden text-sm">SELECT TIME TO JUMP TO:</p>
             <motion.div
-                className="flex flex-row md:flex-col gap-1 sm:gap-5 md:gap-1 bg-zinc-700 bg-opacity-50 md:p-3 rounded-lg md:rounded-2xl md:shadow-md"
+                className="flex flex-row gap-2"
                 initial={{ x: -50, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.5, ease: "easeInOut" }}
             >
                 <>
-                    <p className="font-mono text-cyan-400 hidden md:block text-sm pb-2">SELECT TIME TO JUMP TO:</p>
                     {props.daySelectItems.map((daySelectItem, index) => (
                         <DaySelectItem
                             key={`day-select-item-${index}`}
+                            dayNumber={index + 1}
                             isSelected={props.selectedDay === index}
                             daySelectItem={daySelectItem}
                             onClick={() => {

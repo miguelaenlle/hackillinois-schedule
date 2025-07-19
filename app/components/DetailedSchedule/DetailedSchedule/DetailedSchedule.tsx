@@ -2,11 +2,10 @@ import { EventTypeWithMomentDates } from "@/app/types/EventType";
 import { motion } from 'framer-motion';
 import { FC, useMemo } from "react";
 import { DaySelectItemType } from "../../../types/DaySelectItemType";
+import TypeText from "../../shared/TypeText";
 import DetailedScheduleItem from "../DetailedScheduleItem/DetailedScheduleItem";
 import EventModal from "../EventModal";
 import { useDetailedScheduleHook } from "./use-detailed-schedule-hook";
-import { TypeAnimation } from "react-type-animation";
-import TypeText from "../../shared/TypeText";
 
 const DetailedSchedule: FC<{
     selectedDayNumber: number,
@@ -38,7 +37,7 @@ const DetailedSchedule: FC<{
         <>
             <motion.div
                 ref={detailedScheduleHook.listRef}
-                className="w-full pt-7 md:pt-[14px] pb-20 overflow-y-auto scrollbar-none md:pr-8 animate-fadeIn md:px-3"
+                className="w-full overflow-y-auto scrollbar-none animate-fadeIn gap-4 flex flex-col"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
@@ -46,17 +45,6 @@ const DetailedSchedule: FC<{
                     detailedScheduleHook.handleResetHoveredEvent();
                 }}
             >
-                <div className="h-[1.25rem]">
-                    <TypeText
-                        text={`TIME JUMP DESTINATION DETAILS:`}
-                        speed={40}
-                        className="text-sm font-mono text-cyan-400"
-                    />
-                </div>
-                <div className="mb-2"></div>
-                {scheduleHeader}
-                <div className="mb-4"></div>
-
                 {props.events.map((event, index) => (
                     <DetailedScheduleItem
                         isHovered={detailedScheduleHook.hoveredEventId === event.eventId}
