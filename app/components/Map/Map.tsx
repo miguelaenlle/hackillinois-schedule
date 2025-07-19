@@ -3,6 +3,7 @@ import MapSvg from '@/public/static/images/map.svg';
 import Image from 'next/image';
 import { EventTypeWithMomentDates } from '@/app/types/EventType';
 import { convertNumberToRomanNumeral } from '@/app/utils/convert-number-to-roman-numeral';
+import { Tooltip } from 'react-tooltip'
 
 interface Landmark {
     x: number;
@@ -60,6 +61,7 @@ interface MapProps {
 
 export const Map = ({ displayedEvents, hoveredEventId, onHoverEventId, onSelectEvent }: MapProps) => {
     const hoveredEventIndex = displayedEvents.findIndex(event => event.eventId === hoveredEventId);
+    const hoveredEvent = hoveredEventIndex !== -1 ? displayedEvents[hoveredEventIndex] : undefined;
 
     const numLandmarks = LANDMARKS.length;
     const numEvents    = displayedEvents.length;
@@ -109,15 +111,7 @@ export const Map = ({ displayedEvents, hoveredEventId, onHoverEventId, onSelectE
                             y={loc.y - height/2}
                             width={width}
                             height={height}
-                            className={`pointer-events-auto ${isClosest ? 'opacity-40' : 'opacity-20'} transition-opacity duration-300 bg-red-500 hover:opacity-40`}
-                            onMouseEnter={() => {
-                                const nearestLandmark = selectedLandmarks.findIndex((lm) => lm.closestLocationIndex === i);
-                                if (nearestLandmark !== -1) {
-                                    onHoverEventId(displayedEvents[nearestLandmark].eventId);
-                                } else {
-                                    onHoverEventId(undefined);
-                                }
-                            }}
+                            className={`pointer-events-auto ${isClosest ? 'opacity-20' : 'opacity-20'} transition-opacity duration-300 bg-red-500 hover:opacity-20`}
                         />
                     );
                 })}
@@ -129,14 +123,20 @@ export const Map = ({ displayedEvents, hoveredEventId, onHoverEventId, onSelectE
                         y={lm.y - 10}
                         width={20}
                         height={20}
+                        className="overflow-visible"
                         onClick={() => {
                             onSelectEvent(displayedEvents[i]);
                         }}
                         onMouseEnter={() => {
                             onHoverEventId(displayedEvents[i].eventId);
                         }}
+                        data-tooltip-id={`location-tooltip-${i}`}
+                        data-tooltip-content={hoveredEvent ? hoveredEvent.name : ''}
                     >
-                        <div className="w-full h-full flex items-center justify-center">
+                        <div 
+                            className="w-full h-full flex items-center justify-center overflow-visible"
+
+                        >
                             <div
                                 style={{
                                     width: isHovered ? '20px' : '10px',
@@ -156,6 +156,7 @@ export const Map = ({ displayedEvents, hoveredEventId, onHoverEventId, onSelectE
                     </foreignObject>
             })}
             </svg>
+            <Tooltip id={`location-tooltip-${hoveredEventIndex}`} isOpen={hoveredEvent !== undefined} />
         </div>
     )
 }
