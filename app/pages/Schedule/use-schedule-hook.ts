@@ -15,6 +15,7 @@ export const useScheduleHook = () => {
     const [eventDays, setEventDays] = useState<DaySelectItemType[] | undefined>();
     const [error, setError] = useState<string | undefined>();
     const [selectedEvent, setSelectedEvent] = useState<EventTypeWithMomentDates | undefined>();
+    const [hoveredEventId, setHoveredEventId] = useState<string | undefined>(undefined);
     const [loading, setLoading] = useState(false);
 
     const keyboardEventContext = useContext(KeyboardEventContext);
@@ -111,6 +112,14 @@ export const useScheduleHook = () => {
         keyboardEventContext?.selectedMode
     ])
 
+    const handleHoverEventId = (eventId: string | undefined) => {
+        if (eventId === undefined) {
+            setHoveredEventId(undefined);
+        } else {
+            setHoveredEventId(eventId);
+        }
+    }
+
     useEffect(() => {
         handleLoadEvents();
     }, [])
@@ -140,9 +149,11 @@ export const useScheduleHook = () => {
         error,
         eventDays,
         selectedEvent,
+        hoveredEventId,
 
         handleSelectDay,
         handleToggleMode,
         handleSelectEvent,
+        handleHoverEventId,
     }
 }

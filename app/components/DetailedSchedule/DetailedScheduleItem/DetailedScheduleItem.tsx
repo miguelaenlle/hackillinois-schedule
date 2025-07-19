@@ -9,6 +9,7 @@ const DetailedScheduleItem: FC<{
     isHovered?: boolean;
     event: EventTypeWithMomentDates;
     onClick: () => void;
+    onHoverEventId?: (eventId: string | undefined) => void;
 }> = (props) => {
     const detailedScheduleItemHook = useDetailedScheduleItemHook(props.event);
     const scheduleItemStyle = useMemo(() => {
@@ -16,7 +17,9 @@ const DetailedScheduleItem: FC<{
     }, [props.isHovered])
 
     return (
-        <div id={`event-${props.event.eventId}`} className="flex flex-col md:flex-row gap-1 md:gap-8 w-full">
+        <div id={`event-${props.event.eventId}`} className="flex flex-col md:flex-row gap-1 md:gap-8 w-full" onMouseEnter={(e) => {
+            props.onHoverEventId?.(props.event.eventId);
+        }}>
             <div className={scheduleItemStyle} onClick={props.onClick}>
                 <div className="flex gap-2 items-center font-serif">
                     <CategoryIcon

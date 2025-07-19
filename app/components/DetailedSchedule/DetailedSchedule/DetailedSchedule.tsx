@@ -1,8 +1,7 @@
 import { EventTypeWithMomentDates } from "@/app/types/EventType";
 import { motion } from 'framer-motion';
-import { FC, useMemo } from "react";
+import { FC, useEffect } from "react";
 import { DaySelectItemType } from "../../../types/DaySelectItemType";
-import TypeText from "../../shared/TypeText";
 import DetailedScheduleItem from "../DetailedScheduleItem/DetailedScheduleItem";
 import EventModal from "../EventModal";
 import { useDetailedScheduleHook } from "./use-detailed-schedule-hook";
@@ -12,7 +11,8 @@ const DetailedSchedule: FC<{
     selectedDay?: DaySelectItemType,
     events: EventTypeWithMomentDates[],
     selectedEvent: EventTypeWithMomentDates | undefined,
-    onSelectEvent: (event: EventTypeWithMomentDates | undefined) => void
+    onSelectEvent: (event: EventTypeWithMomentDates | undefined) => void,
+    onHoverEventId: (eventId: string | undefined) => void
 }> = (props) => {
     const detailedScheduleHook = useDetailedScheduleHook(
         props.selectedEvent,
@@ -20,18 +20,9 @@ const DetailedSchedule: FC<{
         props.onSelectEvent
     )
 
-    const scheduleHeader = useMemo(() => {
-        return <div className={"h-[2rem] md:h-[2.25rem]"}>
-            <TypeText
-                    key={Math.random()}
-                    text={`Day ${props.selectedDayNumber + 1} - ${props.selectedDay?.dayOfWeek ?? ""}`}
-                    speed={70}
-                    className="text-2xl md:text-3xl font-mono"
-                />
-        </div>
-    }, [props.selectedDayNumber, props.selectedDay]);
-
-
+    useEffect(() => {
+        props.onHoverEventId(detailedScheduleHook.hoveredEventId);
+    }, [detailedScheduleHook.hoveredEventId])
 
     return (
         <>
@@ -53,6 +44,7 @@ const DetailedSchedule: FC<{
                         onClick={() => {
                             detailedScheduleHook.handleSelectEvent(event);
                         }}
+                        onHoverEventId={props.onHoverEventId}
                     />
                 ))}
             </motion.div>

@@ -11,6 +11,7 @@ const ScheduleInformationSegment: React.FC<{
     displayedEvents: EventTypeWithMomentDates[];
     eventDays: DaySelectItemType[] | undefined;
     handleSelectEvent: (event: EventTypeWithMomentDates | undefined) => void;
+    onHoverEventId: (eventId: string | undefined) => void;
 }> = (props) => {
     return (
         <div
@@ -29,6 +30,7 @@ const ScheduleInformationSegment: React.FC<{
                     events={props.displayedEvents}
                     selectedEvent={props.selectedEvent}
                     onSelectEvent={props.handleSelectEvent}
+                    onHoverEventId={props.onHoverEventId}
                 />
             )}
         </div>

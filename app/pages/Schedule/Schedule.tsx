@@ -4,6 +4,7 @@ import ScheduleInformationSegment from "@/app/components/ScheduleSegments/Schedu
 import ScheduleSpacerSegment from "@/app/components/ScheduleSegments/ScheduleSpacerSegment";
 import { FC } from "react";
 import { useScheduleHook } from "./use-schedule-hook";
+import { Map } from "@/app/components/Map/Map";
 
 // Blur effect from https://stackoverflow.com/questions/70970529/css-div-fade-scroll-styling
 
@@ -12,11 +13,8 @@ const Schedule: FC<{}> = () => {
 
     return (
         <>
-            <div className={"absolute z-10 w-full p-5 pb-20 h-screen flex gap-20"}>
-                <div className={'flex-[0.5] mt-16'}>
-
-                </div>
-                <div className="flex flex-col h-full flex-[2]">
+            <div className={"absolute z-10 w-full p-5 pb-20 h-screen flex gap-10"}>
+                <div className="flex flex-col h-full flex-[1]">
                     <ScheduleDaySelectorSegment
                         loading={scheduleHook.loading}
                         eventDays={scheduleHook.eventDays}
@@ -31,17 +29,15 @@ const Schedule: FC<{}> = () => {
                         displayedEvents={scheduleHook.displayedEvents}
                         eventDays={scheduleHook.eventDays}
                         handleSelectEvent={scheduleHook.handleSelectEvent}
+                        onHoverEventId={scheduleHook.handleHoverEventId}
                     />
                 </div>
-                <div className={'flex-[0.5] mt-16'}>
-
-                </div>
-                <div className={'flex-1 mt-16'}>
-                    <p>Map</p>
-
-                </div>
-                <div className={'flex-[0.5] mt-16'}>
-
+                <div className={'flex flex-1 flex-col justify-center items-center'}>
+                    <Map 
+                        displayedEvents={scheduleHook.displayedEvents} 
+                        selectedEvent={scheduleHook.selectedEvent} 
+                        hoveredEventId={scheduleHook.hoveredEventId}
+                    />
                 </div>
             </div>
 
