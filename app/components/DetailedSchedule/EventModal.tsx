@@ -45,20 +45,12 @@ const EventModal: FC<{
                         <div className="grid md:grid-cols-2 bg-zinc-100 rounded-lg shadow-md gap-0 mb-2">
                             <div className="items-center flex gap-1 p-4 pb-0">
                                 <MdAccessTimeFilled className="text-gray-500 w-4 h-4 md:w-5 md:h-5" />
-                                <TypeText
-                                    speed={SPEED}
-                                    text={`${startDateTime} - ${endDateTime}`}
-                                    className="text-sm md:text-md text-gray-600 font-mono"
-                                />
+                                <p className="text-md text-gray-600">{`${startDateTime} - ${endDateTime}`}</p>
                             </div>
                             {categoryInformation && (
                                 <div className="flex items-center gap-1 p-4 pb-0">
                                     {categoryInformation.icon && <categoryInformation.icon className="w-4 h-4 md:w-5 md:h-5 text-gray-500" />}
-                                    <TypeText
-                                        speed={SPEED}
-                                        text={categoryInformation.displayText}
-                                        className="text-sm md:text-md text-gray-600 font-mono"
-                                    />
+                                    <p className="text-md text-gray-600">{`${startDateTime} - ${endDateTime}`}</p>
                                 </div>
                             )}
                             <EventLocationMapButton
@@ -67,11 +59,7 @@ const EventModal: FC<{
                             />
                             <div className="flex items-center gap-[6px] p-4">
                                 <FaArrowCircleUp className="text-gray-500 md:w-4 md:h-4 w-[0.9rem] h-[0.9rem] ml-[1.5px]" />
-                                <TypeText
-                                    speed={SPEED}
-                                    text={ `${props.event?.points} points`}
-                                    className="text-gray-600 text-sm md:text-md font-mono"
-                                />
+                                <p className="text-md text-gray-600">{`${props.event?.points} points`}</p>
 
                             </div>
                         </div>

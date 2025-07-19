@@ -28,7 +28,7 @@ const DetailedSchedule: FC<{
         <>
             <motion.div
                 ref={detailedScheduleHook.listRef}
-                className="w-full overflow-y-auto scrollbar-none animate-fadeIn gap-4 flex flex-col pt-4"
+                className="w-full overflow-y-auto scrollbar-none animate-fadeIn gap-4 flex flex-col py-4"
                 style={{
                     WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 2%, black 98%, transparent 100%)',
                     maskImage:       'linear-gradient(to bottom, transparent 0%, black 2%, black 98%, transparent 100%)',

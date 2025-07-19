@@ -29,17 +29,15 @@ const EventLocationMapButton: FC<{
             <FaLocationDot className={`${buttonStyle} w-4 h-4 md:w-5 md:h-5`} />
             <div className="flex items-center">
                 {props.event?.locations && props.event?.locations.length > 0 ? (
-                    <TypeText
-                        speed={props.speed ?? 90}
-                        text={props.event.locations.map(loc => loc.description).join(", ")}
-                        className={`${linkStyle} ${mapImageUrlAvailable ? "underline" : ""} font-mono text-sm`}
-                    />
+                    <p
+                        className={`${linkStyle} ${mapImageUrlAvailable ? "underline" : ""} text-md`}
+                    >
+                        {props.event.locations.map(loc => loc.description).join(", ")}
+                    </p>
                 ) : (
-                    <TypeText
-                        speed={props.speed ?? 90}
-                        text="Location not specified"
-                        className="text-sm text-gray-600 font-mono"
-                    />
+                    <p className="text-md text-gray-600 font-mono">
+                        Location not specified
+                    </p>
                 )}
             </div>
         </>

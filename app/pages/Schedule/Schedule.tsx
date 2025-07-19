@@ -13,8 +13,8 @@ const Schedule: FC<{}> = () => {
 
     return (
         <>
-            <div className={"absolute z-10 w-full p-5 pb-20 h-screen flex gap-10"}>
-                <div className="flex flex-col h-full flex-[1]">
+            <div className={"absolute z-10 w-screen md:pb-20 h-screen flex gap-10"}>
+                <div className="flex flex-col h-full md:flex-[1] w-full pt-3">
                     <ScheduleDaySelectorSegment
                         loading={scheduleHook.loading}
                         eventDays={scheduleHook.eventDays}
@@ -32,7 +32,7 @@ const Schedule: FC<{}> = () => {
                         onHoverEventId={scheduleHook.handleHoverEventId}
                     />
                 </div>
-                <div className={'flex flex-1 flex-col justify-center items-center'}>
+                <div className={'hidden md:flex md:flex-1 flex-col justify-center items-center'}>
                     <Map 
                         displayedEvents={scheduleHook.displayedEvents} 
                         hoveredEventId={scheduleHook.hoveredEventId}

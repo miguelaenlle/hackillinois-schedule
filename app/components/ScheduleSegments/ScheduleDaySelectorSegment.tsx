@@ -8,7 +8,7 @@ const ScheduleDaySelectorSegment: React.FC<{
     handleSelectDay: (day: number) => void
 }> = (props) => {
     return (
-        <div className={`flex flex-row mt-16`}>
+        <div className={`flex flex-row mt-20 w-full overflow-x-auto px-3 h-[60px] min-h-[60px]`}>
             {props.eventDays && (props.eventDays.length > 0) && !(props.loading) && (
                 <DaySelector
                     selectedDay={props.selectedDay}

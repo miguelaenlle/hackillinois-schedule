@@ -15,7 +15,7 @@ const ScheduleInformationSegment: React.FC<{
 }> = (props) => {
     return (
         <div
-            className="flex flex-col mt-8 md:mb-0 overflow-y-auto overflow-x-visible mt-0"
+            className="flex flex-col md:mt-8 md:mb-0 overflow-y-auto overflow-x-visible mt-0 px-3"
         >
             {props.error && (
                 <AlertBox
