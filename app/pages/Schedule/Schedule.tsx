@@ -35,8 +35,9 @@ const Schedule: FC<{}> = () => {
                 <div className={'flex flex-1 flex-col justify-center items-center'}>
                     <Map 
                         displayedEvents={scheduleHook.displayedEvents} 
-                        selectedEvent={scheduleHook.selectedEvent} 
                         hoveredEventId={scheduleHook.hoveredEventId}
+                        onHoverEventId={scheduleHook.handleHoverEventId}
+                        onSelectEvent={scheduleHook.handleSelectEvent}
                     />
                 </div>
             </div>

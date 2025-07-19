@@ -91,6 +91,13 @@ export const useScheduleHook = () => {
         keyboardEventContext?.handleSetSelectedMode("schedule");
     }
 
+    const handleSelectEventById = (eventId: string) => {
+        const event = events?.find(e => e.eventId === eventId);
+        if (event) {
+            handleSelectEvent(event);
+        }
+    }
+
     const handleMove = useCallback((e: any) => {
         if (keyboardEventContext?.selectedMode !== "daySelector") {
             return;
@@ -155,5 +162,6 @@ export const useScheduleHook = () => {
         handleToggleMode,
         handleSelectEvent,
         handleHoverEventId,
+        handleSelectEventById,
     }
 }
