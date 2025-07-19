@@ -7,14 +7,14 @@ import Schedule from "./pages/Schedule/Schedule";
 
 export default function Home() {
   return (
-    <div className={"relative bg-blue-900 h-screen overflow-x-hidden overflow-y-hidden"}>
-      <NavbarEnabledProvider>
+    <div className={"relative h-screen overflow-x-hidden overflow-y-hidden"}>
+      {/* <NavbarEnabledProvider>
         <NavbarWrapper>
           <KeyboardEventProvider>
             <Schedule />
           </KeyboardEventProvider>
         </NavbarWrapper>
-      </NavbarEnabledProvider>
+      </NavbarEnabledProvider> */}
       <Backdrop />
     </div>
   );

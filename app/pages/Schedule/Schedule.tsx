@@ -5,6 +5,7 @@ import ScheduleSpacerSegment from "@/app/components/ScheduleSegments/ScheduleSpa
 import { FC } from "react";
 import { useScheduleHook } from "./use-schedule-hook";
 import { Map } from "@/app/components/Map/Map";
+import { MapSegment } from "@/app/components/Map/MapSegment";
 
 // Blur effect from https://stackoverflow.com/questions/70970529/css-div-fade-scroll-styling
 
@@ -13,7 +14,8 @@ const Schedule: FC<{}> = () => {
 
     return (
         <>
-            <div className={"absolute z-10 w-screen md:pb-20 h-screen flex gap-10"}>
+            <div 
+                className={"absolute z-50 w-screen md:pb-32 h-screen flex gap-10"}>
                 <div className="flex flex-col h-full md:flex-[1] w-full pt-3">
                     <ScheduleDaySelectorSegment
                         loading={scheduleHook.loading}
@@ -33,8 +35,8 @@ const Schedule: FC<{}> = () => {
                     />
                 </div>
                 <div className={'hidden md:flex md:flex-1 flex-col justify-center items-center'}>
-                    <Map 
-                        displayedEvents={scheduleHook.displayedEvents} 
+                    <MapSegment
+                        displayedEvents={scheduleHook.displayedEvents}
                         hoveredEventId={scheduleHook.hoveredEventId}
                         onHoverEventId={scheduleHook.handleHoverEventId}
                         onSelectEvent={scheduleHook.handleSelectEvent}
