@@ -38,31 +38,38 @@ export const useDetailedScheduleHook = (
         if (keyboardEventContext?.selectedMode !== "schedule") {
             return;
         }
-        if ((e.key === "ArrowUp" || e.key === "ArrowDown") && events.length > 0) {
-            if (!hoveredEventId) {
-                setHoveredEventId(events[0].eventId);
-                return;
-            }
-            const index = events.findIndex((event) => event.eventId === hoveredEventId);
 
-            let newEventId: string | undefined;
+        const isArrowUpOrLeft = e.key === 'ArrowUp' || e.key === "ArrowLeft";
+        const isArrowDownOrRight = e.key === 'ArrowDown' || e.key === "ArrowRight";
 
-            if (e.key === "ArrowUp") {
-                if (index > 0) {
-                    newEventId = events[index - 1].eventId;
-                }
-            } else if (e.key === "ArrowDown") {
-                if (index < events.length - 1) {
-                    newEventId = events[index + 1].eventId;
-                }
-            }
+        if (!isArrowUpOrLeft && !isArrowDownOrRight) {
+            return;
+        }
 
-            if (newEventId) {
-                e.preventDefault();
-                onSelectEvent(undefined);
-                handleScrollToEventId(newEventId);
-                setHoveredEventId(newEventId);
+        if (!hoveredEventId) {
+            setHoveredEventId(events[0].eventId);
+            return;
+        }
+        const index = events.findIndex((event) => event.eventId === hoveredEventId);
+
+        let newEventId: string | undefined;
+
+        if (isArrowUpOrLeft) {
+            e.preventDefault();
+            if (index > 0) {
+                newEventId = events[index - 1].eventId;
+            } else {
+                keyboardEventContext?.handleSetSelectedMode('daySelector');
             }
+        } else if (isArrowDownOrRight) {
+            e.preventDefault();
+            if (index < events.length - 1) {
+                newEventId = events[index + 1].eventId;
+            }
+        }
+
+        if (newEventId) {
+            setHoveredEventId(newEventId);
         }
     }, [events, hoveredEventId, keyboardEventContext?.selectedMode])
 

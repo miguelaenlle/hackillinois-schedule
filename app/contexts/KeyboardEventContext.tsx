@@ -19,7 +19,7 @@ const KeyboardEventProvider: FC<PropsWithChildren<{}>> = (props) => {
     }
 
     const handleClickEnter = useCallback((e: any) => {
-        if (e.key === "Enter") {
+        if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
             setEnterRefreshTrigger((prev) => prev + 1);
         } else if (e.key === "Escape") {
@@ -34,24 +34,6 @@ const KeyboardEventProvider: FC<PropsWithChildren<{}>> = (props) => {
             window.removeEventListener('keydown', handleClickEnter);
         }
     }, [handleClickEnter])
-
-
-    const handleSwapMode = useCallback((e: any) => {
-        if (e.key === "ArrowLeft") {
-            e.preventDefault();
-            setSelectedMode("daySelector");
-        } else if (e.key === "ArrowRight") {
-            e.preventDefault();
-            setSelectedMode("schedule");
-        }
-    }, [setSelectedMode])
-
-    useEffect(() => {
-        window.addEventListener('keydown', handleSwapMode);
-        return () => {
-            window.removeEventListener('keydown', handleSwapMode);
-        }
-    }, [handleSwapMode])
 
     return (
         <KeyboardEventContext.Provider value={{ selectedMode, enterRefreshTrigger, escapeRefreshTrigger, handleSetSelectedMode }}>

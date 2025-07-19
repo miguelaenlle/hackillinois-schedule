@@ -99,18 +99,24 @@ export const useScheduleHook = () => {
     }
 
     const handleMove = useCallback((e: any) => {
-        if (keyboardEventContext?.selectedMode !== "daySelector") {
-            return;
-        }
-        if (e.key === "ArrowUp") {
-            e.preventDefault();
-            if (selectedDay > 0) {
-                setSelectedDay(selectedDay - 1);
-            }
-        } else if (e.key === "ArrowDown") {
-            e.preventDefault();
-            if (selectedDay < (eventDays?.length ?? 0) - 1) {
-                setSelectedDay(selectedDay + 1);
+        if (keyboardEventContext?.selectedMode === 'daySelector') {
+            if (e.key === "ArrowLeft") {
+                e.preventDefault();
+                if (selectedDay > 0) {
+                    setSelectedDay(selectedDay - 1);
+                } else {
+                    keyboardEventContext?.handleSetSelectedMode('schedule');
+                }
+            } else if (e.key === "ArrowDown") {
+                e.preventDefault();
+                keyboardEventContext?.handleSetSelectedMode('schedule');
+            } else if (e.key === "ArrowUp" || e.key === "ArrowRight") {
+                e.preventDefault();
+                if (selectedDay < (eventDays?.length ?? 0) - 1) {
+                    setSelectedDay(selectedDay + 1);
+                } else {
+                    keyboardEventContext?.handleSetSelectedMode('schedule');
+                }
             }
         }
     }, [
