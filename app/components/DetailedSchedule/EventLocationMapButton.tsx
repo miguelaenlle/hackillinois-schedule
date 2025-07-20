@@ -13,14 +13,14 @@ const EventLocationMapButton: FC<{
     ])
 
     const linkStyle = useMemo(() => {
-        return `${mapImageUrlAvailable ? "text-blue-500" : "text-gray-800"} ${mapImageUrlAvailable ? "group-hover:text-blue-600" : ""}`
+        return `${mapImageUrlAvailable ? "text-blue-500" : "text-gray-700"} ${mapImageUrlAvailable ? "group-hover:text-blue-600" : ""}`
     }, [mapImageUrlAvailable])
 
     const buttonStyle = useMemo(() => {
         if (mapImageUrlAvailable) {
             return linkStyle
         } else {
-            return "text-gray-500"
+            return "text-gray-700"
         }
     }, [mapImageUrlAvailable, linkStyle])
 
@@ -35,7 +35,7 @@ const EventLocationMapButton: FC<{
                         {props.event.locations.map(loc => loc.description).join(", ")}
                     </p>
                 ) : (
-                    <p className="text-md text-gray-600 font-mono">
+                    <p className="text-md text-gray-700">
                         Location not specified
                     </p>
                 )}

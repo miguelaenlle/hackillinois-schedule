@@ -7,11 +7,11 @@ export const NAVBAR_BUTTON_ITEMS: NavbarButtonItemType[] = [
     },
     {
         text: "Mentors",
-        link: "https://2024.hackillinois.org/mentors"
+        link: "https://2025.hackillinois.org/mentors"
     },
     {
         text: "Prizes",
-        link: "https://2024.hackillinois.org/prizes"
+        link: "https://2025.hackillinois.org/prizes"
     },
     {
         text: "Credits",

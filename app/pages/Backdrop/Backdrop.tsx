@@ -11,12 +11,11 @@ import { Fish } from "@/app/components/Backdrop/Fish";
 
 const Backdrop: FC<{}> = () => {
     return (
-        <div className="relative w-screen h-screen fixed top-0 left-0 z-10 flex items-center justify-center"> 
-        {/* style={{ filter: 'blur(4px)' }}> */}
+        <div className="relative w-screen h-screen fixed top-0 left-0 z-10 flex items-center justify-center" style={{ filter: 'blur(4px)' }}>
             <Image
                 src={BgAtlantis}
                 alt="Atlantis Background"
-                className="absolute top-0 left-0 w-full h-full object-cover pointer-events-none"
+                className="absolute top-0 left-0 w-full h-full object-cover pointer-events-none transform scale-110"
             />
             
             <motion.div
@@ -55,10 +54,10 @@ const Backdrop: FC<{}> = () => {
                 />
             </motion.div>
 
-            <div className="absolute bottom-0 left-0">
+            <div className="absolute bottom-0 left-0 ml-[-50px] md:ml-0 imgevento-container">
                 <Submarine />
             </div>
-            <div className="absolute bottom-[150px] left-0 w-full flex justify-center pointer-events-none">
+            <div className="absolute bottom-[150px] right-[5%] w-full flex justify-end pointer-events-none">
                 <TreasureChest />
             </div>
             <div className="absolute bottom-[100px] left-[25%] w-full flex justify-center pointer-events-none">

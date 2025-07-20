@@ -6,7 +6,7 @@ import { Bubble, Bubbles } from "./Bubbles";
 
 export const TreasureChest: React.FC = () => {
     return (
-        <div className="relative w-[200px] h-fit-content">
+        <div className="relative w-[200px] h-fit-content md:scale-[1.5] rotate-[-3deg] md:mb-[60px]">
             <Image
                 src={TreasureChestSvg}
                 alt="Treasure Chest"

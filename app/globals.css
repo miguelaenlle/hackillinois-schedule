@@ -23,6 +23,36 @@ body {
       rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
+.imgevento-container {
+  overflow: hidden;
+}
+
+.imgevento {
+  transform-origin: center center;
+  animation: imgevento 6s ease-in-out alternate infinite;
+}
+
+@keyframes imgevento {
+  0%,
+  100% {
+    transform: skew(0deg, 0deg) scale(1, 1);
+    filter: saturate(100%) invert(0%);
+  }
+  
+  25% {
+    filter: saturate(100%) invert(0%);
+  }
+  
+  50% {
+    transform: skew(3deg, 3deg) scale(1, 1);
+    filter: saturate(100%) invert(0%);
+  }
+  
+  75% {
+    filter: saturate(100%) invert(0%);
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

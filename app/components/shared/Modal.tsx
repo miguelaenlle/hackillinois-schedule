@@ -19,10 +19,10 @@ export const Modal: FC<{
         onClick={props.onClose}
       >
         <div className="relative w-full max-w-2xl my-6 mx-auto">
-          <div className="border-0 rounded-lg relative flex flex-col w-full bg-zinc-50 outline-none focus:outline-none overflow-hidden" onClick={(e) => { e.stopPropagation() }}>
-            <div className={"p-4 pb-8 pt-5"}>
+          <div className="border-0 rounded-lg relative flex flex-col w-full bg-[#FDDFBE] outline-none focus:outline-none overflow-hidden" onClick={(e) => { e.stopPropagation() }}>
+            <div className={"p-4 pb-0 pt-5"}>
               <div className="w-full flex items-start justify-between gap-7">
-                <div className="items-center flex justify-start gap-3">
+                <div className="items-center flex justify-start gap-1">
                   {props.eventType && (
                     <div className="md:mt-0">
                       <CategoryIcon
@@ -33,7 +33,7 @@ export const Modal: FC<{
                       />
                     </div>
                   )}
-                  <h1 className="text-zinc-900 text-xl md:text-2xl font-bold mt-[1px]">{props.header}</h1>
+                  <h1 className="text-zinc-900 text-xl md:text-2xl font-bold">{props.header}</h1>
                 </div>
                 <FaXmark className="text-zinc-400 hover:text-zinc-800 transition-all hover:cursor-pointer w-7 min-w-7 h-7 mt-[1px] md:mt-0" onClick={props.onClose} />
               </div>

@@ -13,11 +13,12 @@ export const Submarine = () => {
         repeatType: 'reverse',
         ease: 'easeInOut',
       }}
+      className="imgevento"
     >
       <Image  
         src={SubmarineSvg}
         alt="Submarine"
-        className="w-[400px]"
+        className="w-[40vw] min-w-[400px] max-w-[700px] pointer-events-none"
       />
     </motion.div>
   );

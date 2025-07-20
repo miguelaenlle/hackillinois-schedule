@@ -1,9 +1,7 @@
-import React from 'react';
-import { motion } from 'framer-motion';
 import { EventTypeWithMomentDates } from "@/app/types/EventType";
+import { motion } from 'framer-motion';
 import { Map } from './Map';
-import { Submarine } from '../Backdrop/Submarine';
-import { TreasureChest } from '../Backdrop/TreasureChest';
+import { useEffect, useState } from "react";
 
 interface MapSegmentProps {
   hoveredEventId?: string;
@@ -31,22 +29,39 @@ const dropInVariants = {
 };
 
 export const MapSegment = (props: MapSegmentProps) => {
+  const [eventHoverEnabled, setEventHoverEnabled] = useState(false);
+  useEffect(() => {
+    // Enable event hover after a short delay to allow initial animations to complete
+    const timer = setTimeout(() => {
+      setEventHoverEnabled(true);
+    }, 2000); // 2 seconds delay
+
+    return () => clearTimeout(timer); // Cleanup on unmount
+  }, [])
+
     return <div
         className="relative w-full h-full"
-    >
-        <motion.div
-            variants={dropInVariants}
-            initial="hidden"
-            animate="visible"
-        >
-            <Map
-              displayedEvents={props.displayedEvents}
-              hoveredEventId={props.hoveredEventId}
-              onHoverEventId={props.onHoverEventId}
-              onSelectEvent={props.onSelectEvent}
-            />
-        </motion.div>
-
-        <TreasureChest />
+    > 
+      <motion.h2
+        className="absolute top-[15%] left-0 w-full text-gray-400 text-3xl font-bold mb-4 text-center opacity-50"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 0.5, ease: 'easeOut' }}
+      >
+        Map of Atlantis
+      </motion.h2>
+    
+      <motion.div
+          variants={dropInVariants}
+          initial="hidden"
+          animate="visible"
+      >
+          <Map
+            displayedEvents={props.displayedEvents}
+            hoveredEventId={eventHoverEnabled ? props.hoveredEventId : undefined}
+            onHoverEventId={props.onHoverEventId}
+            onSelectEvent={props.onSelectEvent}
+          />
+      </motion.div>
     </div>
 };
