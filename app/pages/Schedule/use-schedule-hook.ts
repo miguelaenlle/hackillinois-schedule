@@ -27,7 +27,7 @@ export const useScheduleHook = () => {
         return events.filter((event) => {
             return event.startTimeMoment.format("MMMM D, YYYY") === eventDays[selectedDay].fullDate;
         });
-    }, [events, selectedDay])
+    }, [events, selectedDay, eventDays])
 
 
     const handleSelectDay = (day: number) => {
@@ -122,7 +122,7 @@ export const useScheduleHook = () => {
     }, [
         selectedDay,
         eventDays,
-        keyboardEventContext?.selectedMode
+        keyboardEventContext?.selectedMode,
     ])
 
     const handleHoverEventId = (eventId: string | undefined) => {

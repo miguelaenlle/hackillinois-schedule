@@ -1,8 +1,8 @@
+import TreasureChestGlowSvg from "@/public/static/images/backdrop/treasure-chest-glow.svg";
+import TreasureChestSvg from "@/public/static/images/backdrop/treasure-chest.svg";
 import Image from "next/image";
 import React from "react";
-import TreasureChestSvg from "@/public/static/images/backdrop/treasure-chest.svg";
-import TreasureChestGlowSvg from "@/public/static/images/backdrop/treasure-chest-glow.svg";
-import { Bubble, Bubbles } from "./Bubbles";
+import { Bubbles } from "./Bubbles";
 
 export const TreasureChest: React.FC = () => {
     return (

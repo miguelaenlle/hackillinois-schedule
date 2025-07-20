@@ -1,56 +1,9 @@
-import React, { useMemo } from 'react';
-import MapSvg from '@/public/static/images/map.svg';
-import Image from 'next/image';
+import { LANDMARKS, LOCATIONS, MAP_SVG_HEIGHT, MAP_SVG_WIDTH } from '@/app/constants/map-landmarks-and-locations';
 import { EventTypeWithMomentDates } from '@/app/types/EventType';
 import { convertNumberToRomanNumeral } from '@/app/utils/convert-number-to-roman-numeral';
-import { Tooltip } from 'react-tooltip'
-
-interface Landmark {
-    x: number;
-    y: number;
-}
-
-interface Location extends Landmark {
-    filename: string;
-    width: number; 
-    height: number;
-}
-
-interface LandmarkPoint extends Landmark {
-    closestLocationIndex: number;
-}
-
-const LANDMARKS: LandmarkPoint[] = [
-  { x:  60, y: 115 , closestLocationIndex: -1},
-  { x:  89, y: 97, closestLocationIndex: -1 },
-  { x: 130, y: 83, closestLocationIndex: -1 },
-  { x: 170, y: 84, closestLocationIndex: -1 },
-  { x: 205, y: 100, closestLocationIndex: 0 },
-  { x: 210, y: 125, closestLocationIndex: 0 },
-
-  { x: 200, y: 150, closestLocationIndex: 1 },
-
-  { x: 179, y: 180, closestLocationIndex: 2 },
-  { x: 165, y: 205, closestLocationIndex: 2 },
-
-  { x: 165, y: 235, closestLocationIndex: 3 },
-  { x: 195, y: 245, closestLocationIndex: 3 },
-  { x: 224, y: 240, closestLocationIndex: 3 },
-  { x: 250, y: 235, closestLocationIndex: 4 },
-  { x: 285, y: 230, closestLocationIndex: 5 },
-];
-
-const LOCATIONS: Location[] = [
-    { x: 225, y: 98, filename: 'columns-1.svg', width: 32, height: 32 },
-    { x:  223, y: 148, filename: 'house.svg', width: 40, height: 40 },
-    { x: 115, y: 175, filename: 'large-building.svg',   width: 80, height: 40 },
-    { x: 198, y: 220, filename: 'medium-building.svg', width: 40, height: 40 },
-    { x: 257, y: 261, filename: 'columns-2.svg', width: 32, height: 32 },
-    { x: 287, y: 265, filename: 'statue.svg', width: 40, height: 40 },
-];
-
-const WIDTH  = 380;
-const HEIGHT = 342;
+import MapSvg from '@/public/static/images/map/map.svg';
+import Image from 'next/image';
+import { Tooltip } from 'react-tooltip';
 
 interface MapProps {
     hoveredEventId?: string;
@@ -61,29 +14,27 @@ interface MapProps {
 
 export const Map = ({ displayedEvents, hoveredEventId, onHoverEventId, onSelectEvent }: MapProps) => {
     const hoveredEventIndex = displayedEvents.findIndex(event => event.eventId === hoveredEventId);
-    const hoveredEvent = hoveredEventIndex !== -1 ? displayedEvents[hoveredEventIndex] : undefined;
 
     const numLandmarks = LANDMARKS.length;
-    const numEvents    = displayedEvents.length;
+    const numEvents = displayedEvents.length;
 
+    // Select the indices of landmarks to use.
     let indices: number[];
     if (numEvents === 0) {
         indices = [];
     } else if (numEvents === 1) {
         indices = [ Math.floor(numLandmarks / 2) ];
     } else if (numEvents >= numLandmarks) {
+        // TODO: This should more dynamically handle the case that there are more events than landmarks.
         indices = Array.from(Array(numLandmarks).keys());
     } else {
+        // Select evenly spaced landmark indices based on the number of events.
         indices = Array.from({ length: numEvents }, (_, i) =>
             Math.round(i * (numLandmarks - 1) / (numEvents - 1))
         );
     }
 
     const selectedLandmarks = indices.map(i => LANDMARKS[i]);
-    const closestLocationIndex = useMemo(() => {
-        if (hoveredEventIndex === -1) return -1;
-        return selectedLandmarks[hoveredEventIndex].closestLocationIndex;
-    }, [hoveredEventIndex, selectedLandmarks]);
     
     return (
         <div 
@@ -96,34 +47,33 @@ export const Map = ({ displayedEvents, hoveredEventId, onHoverEventId, onSelectE
                 className="object-fit pointer-events-none"
             />
             <svg
-                viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
+                viewBox={`0 0 ${MAP_SVG_WIDTH} ${MAP_SVG_HEIGHT}`}
                 className="absolute inset-0 w-full h-full"
             >
                 {LOCATIONS.map((loc, i) => {
                     const width = loc.width;
                     const height = loc.height;
-                    const isClosest = closestLocationIndex === i;
                     return (
                         <image
                             key={`poi-${i}`}
-                            href={`/static/images/map-locations-of-interest/${loc.filename}`}
+                            href={`/static/images/map/${loc.filename}`}
                             x={loc.x - width/2}
                             y={loc.y - height/2}
                             width={width}
                             height={height}
-                            className={`pointer-events-auto ${isClosest ? 'opacity-20' : 'opacity-20'} transition-opacity duration-300 bg-red-500 hover:opacity-20`}
+                            className={`pointer-events-none opacity-20`}
                         />
                     );
                 })}
-                {selectedLandmarks.map((lm, i) => {
+                {selectedLandmarks.map((landmark, i) => {
                     const isHovered = i === hoveredEventIndex
                     return <foreignObject
                         key={i}
-                        x={lm.x - 10}
-                        y={lm.y - 10}
+                        x={landmark.x - 10}
+                        y={landmark.y - 10}
                         width={20}
                         height={20}
-                        className="overflow-visible"
+                        className="overflow-visible cursor-pointer"
                         onClick={() => {
                             onSelectEvent(displayedEvents[i]);
                         }}
@@ -131,11 +81,10 @@ export const Map = ({ displayedEvents, hoveredEventId, onHoverEventId, onSelectE
                             onHoverEventId(displayedEvents[i].eventId);
                         }}
                         data-tooltip-id={`location-tooltip-${i}`}
-                        data-tooltip-content={hoveredEvent ? hoveredEvent.name : ''}
+                        // data-tooltip-content={displayedEvents[i].name}
                     >
                         <div 
                             className="w-full h-full flex items-center justify-center overflow-visible"
-
                         >
                             <div
                                 style={{
@@ -145,19 +94,21 @@ export const Map = ({ displayedEvents, hoveredEventId, onHoverEventId, onSelectE
                                 className={`
                                     flex items-center justify-center
                                     rounded-full
-                                    transition-all
-                                    cursor-pointer
                                     ${isHovered ? 'bg-[#866443]' : 'bg-[#bc966b]'}
                                 `}
                             >
-                                <p className={`text-[10px] ${isHovered ? 'opacity-100' : 'opacity-0'} transition-all`}>{convertNumberToRomanNumeral(i+1).toLowerCase()}</p>
+                                <p className={`text-[10px] ${isHovered ? 'opacity-100' : 'opacity-0'}`}>{convertNumberToRomanNumeral(i+1).toLowerCase()}</p>
                             </div>
                         </div>
                     </foreignObject>
             })}
             </svg>
-            {/* Fade in the tooltip */}
-            <Tooltip id={`location-tooltip-${hoveredEventIndex}`} isOpen={hoveredEvent !== undefined} />
+            {selectedLandmarks.map((_, i) => {
+                const isHovered = i === hoveredEventIndex
+                return (
+                    <Tooltip key={`location-tooltip-${i}`} id={`location-tooltip-${i}`} isOpen={isHovered} content={displayedEvents[i].name} />
+                )
+            })}
         </div>
     )
 }

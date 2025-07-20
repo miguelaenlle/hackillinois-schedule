@@ -1,9 +1,8 @@
 import { EventTypeWithMomentDates } from "@/app/types/EventType";
-import { FC, use, useMemo } from "react";
+import { FC, useMemo } from "react";
+import { FaClock, FaLocationDot } from "react-icons/fa6";
 import Tag from "../../shared/Tag";
 import CategoryIcon from "../CategoryIcon";
-import { useDetailedScheduleItemHook } from "./use-detailed-schedule-item-hook";
-import { FaClock, FaLocationDot } from "react-icons/fa6";
 
 const DetailedScheduleItem: FC<{
     isHovered?: boolean;
@@ -11,7 +10,6 @@ const DetailedScheduleItem: FC<{
     onClick: () => void;
     onHoverEventId?: (eventId: string | undefined) => void;
 }> = (props) => {
-    const detailedScheduleItemHook = useDetailedScheduleItemHook(props.event);
     const scheduleItemStyle = useMemo(() => {
         return `flex flex-col bg-zinc-900 ${props.isHovered ? "bg-opacity-80 bg-zinc-200" : "bg-opacity-50 hover:bg-opacity-80"} p-3 md:p-4 rounded-xl w-full hover:cursor-pointer transition-all`;
     }, [props.isHovered])

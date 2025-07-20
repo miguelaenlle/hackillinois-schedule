@@ -7,7 +7,7 @@ import Schedule from "./pages/Schedule/Schedule";
 
 export default function Home() {
   return (
-    <div className={"relative h-screen overflow-x-hidden overflow-y-hidden"}>
+    <div className={"relative h-[100dvh] overflow-x-hidden overflow-y-hidden"}>
       <NavbarEnabledProvider>
         <NavbarWrapper>
           <KeyboardEventProvider>

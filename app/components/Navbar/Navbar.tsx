@@ -21,7 +21,7 @@ const Navbar: React.FC = (props) => {
                 <div className={`group flex items-center gap-0 hover:cursor-pointer`}>
                     <a href="https://hackillinois.org/" target="_blank">
                         <img
-                            src={"/static/images/hackillinois-logo.png"}
+                            src={"/static/images/navbar/hackillinois-logo.png"}
                             alt="HackIllinois"
                             className="h-8 md:h-12 hover:cursor-pointer"
                         />
