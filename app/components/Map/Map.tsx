@@ -156,6 +156,7 @@ export const Map = ({ displayedEvents, hoveredEventId, onHoverEventId, onSelectE
                     </foreignObject>
             })}
             </svg>
+            {/* Fade in the tooltip */}
             <Tooltip id={`location-tooltip-${hoveredEventIndex}`} isOpen={hoveredEvent !== undefined} />
         </div>
     )

@@ -23,6 +23,9 @@ body {
       rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
+
+/* CSS underwater effect from https://stackoverflow.com/questions/49028340/css-image-underwater-effect */
+
 .imgevento-container {
   overflow: hidden;
 }
