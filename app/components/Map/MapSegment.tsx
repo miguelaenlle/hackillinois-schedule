@@ -40,20 +40,20 @@ export const MapSegment = (props: MapSegmentProps) => {
     return <div
         className="relative w-full h-full"
     > 
-      <motion.h2
-        className="absolute top-[15%] left-0 w-full text-gray-200 text-3xl font-bold mb-4 text-center opacity-50"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 0.5, ease: 'easeOut' }}
-      >
-        Map of Atlantis
-      </motion.h2>
-    
       <motion.div
           variants={dropInVariants}
           initial="hidden"
           animate="visible"
       >
+        <motion.h2
+          className="w-full text-gray-200 text-3xl font-bold mb-4 text-center opacity-50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2, duration: 0.5, ease: 'easeOut' }}
+        >
+          Map of Atlantis
+        </motion.h2>
+      
           <Map
             displayedEvents={props.displayedEvents}
             hoveredEventId={eventHoverEnabled ? props.hoveredEventId : undefined}
