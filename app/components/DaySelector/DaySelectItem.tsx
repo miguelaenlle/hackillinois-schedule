@@ -1,7 +1,5 @@
-import { FC, useContext } from "react";
+import { FC } from "react";
 import { DaySelectItemType } from "../../types/DaySelectItemType";
-import { KeyboardEventContext } from "@/app/contexts/KeyboardEventContext";
-import { convertNumberToRomanNumeral } from "@/app/utils/convert-number-to-roman-numeral";
 
 interface DaySelectItemProps {
     dayNumber: number;
@@ -11,8 +9,6 @@ interface DaySelectItemProps {
 }
 
 const DaySelectItem: FC<DaySelectItemProps> = (props) => {
-    const keyboardEventContext = useContext(KeyboardEventContext);
-
     return (
         <div
             className={`${props.isSelected ? "bg-black shadow-md bg-opacity-80" : "bg-zinc-900 shadow-md"} md:mt-0 p-4 flex items-center gap-2 transition-all duration-150 bg-opacity-50 cursor-pointer rounded-xl`}

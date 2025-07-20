@@ -1,6 +1,6 @@
 import SCHEDULE_INFO from "@/app/constants/event-type-icons";
 import { EventTypeWithMomentDates } from "@/app/types/EventType";
-import BuildingRuins from "@/public/static/images/building-ruins.svg";
+import BuildingRuins from "@/public/static/images/modal/building-ruins.svg";
 import Image from "next/image";
 import { FC, useMemo } from "react";
 import { FaArrowCircleUp } from "react-icons/fa";
@@ -24,7 +24,7 @@ const EventModal: FC<{
         } else {
             return props.event?.endTimeMoment.format("dddd h:mm a");
         }
-    }, [props.event?.endTimeMoment]);
+    }, [props.event?.startTimeMoment, props.event?.endTimeMoment]);
 
     const categoryInformation = useMemo(() => {
         if (props.event?.eventType && SCHEDULE_INFO[props.event?.eventType]) {

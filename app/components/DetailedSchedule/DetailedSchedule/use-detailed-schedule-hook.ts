@@ -22,17 +22,6 @@ export const useDetailedScheduleHook = (
         onSelectEvent(event);
     }
 
-    const handleScrollToEventId = (eventId: string) => {
-        const element = document.getElementById(`event-${eventId}`);
-
-        if (element) {
-            listRef.current?.scrollTo({
-                top: element.offsetTop - 200,
-                behavior: 'smooth'
-            });
-        }
-    }
-
     const handleClickUpOrDownArrow = useCallback((e: any) => {
         // Moves the hovered event up or down
         if (keyboardEventContext?.selectedMode !== "schedule") {
