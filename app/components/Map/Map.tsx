@@ -81,7 +81,6 @@ export const Map = ({ displayedEvents, hoveredEventId, onHoverEventId, onSelectE
                             onHoverEventId(displayedEvents[i].eventId);
                         }}
                         data-tooltip-id={`location-tooltip-${i}`}
-                        // data-tooltip-content={displayedEvents[i].name}
                     >
                         <div 
                             className="w-full h-full flex items-center justify-center overflow-visible"
