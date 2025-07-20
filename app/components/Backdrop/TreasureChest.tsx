@@ -18,7 +18,7 @@ export const TreasureChest: React.FC = () => {
                     alt="Treasure Chest Glow"
                     className="w-[180px] animate-pulse"
                 />
-                <Bubbles count={5} />
+                {/* <Bubbles count={5} /> */}
             </div>
         </div>
     );

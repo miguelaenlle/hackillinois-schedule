@@ -1,3 +1,4 @@
+import { BackdropBubbles } from "@/app/components/Backdrop/BackdropBubbles";
 import { BackdropSunrays } from "@/app/components/Backdrop/BackdropSunrays";
 import { Fish } from "@/app/components/Backdrop/Fish";
 import { Submarine } from "@/app/components/Backdrop/Submarine";
@@ -25,6 +26,7 @@ const Backdrop: FC<{}> = () => {
             </div>
             <BackdropSunrays />
             <Fish />
+            <BackdropBubbles />
         </div>
 
     );
