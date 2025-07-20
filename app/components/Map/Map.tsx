@@ -65,12 +65,12 @@ export const Map = ({ displayedEvents, hoveredEventId, onHoverEventId, onSelectE
                         />
                     );
                 })}
-                {selectedLandmarks.map((lm, i) => {
+                {selectedLandmarks.map((landmark, i) => {
                     const isHovered = i === hoveredEventIndex
                     return <foreignObject
                         key={i}
-                        x={lm.x - 10}
-                        y={lm.y - 10}
+                        x={landmark.x - 10}
+                        y={landmark.y - 10}
                         width={20}
                         height={20}
                         className="overflow-visible cursor-pointer"
@@ -81,7 +81,7 @@ export const Map = ({ displayedEvents, hoveredEventId, onHoverEventId, onSelectE
                             onHoverEventId(displayedEvents[i].eventId);
                         }}
                         data-tooltip-id={`location-tooltip-${i}`}
-                        data-tooltip-content={displayedEvents[i].name}
+                        // data-tooltip-content={displayedEvents[i].name}
                     >
                         <div 
                             className="w-full h-full flex items-center justify-center overflow-visible"
@@ -100,10 +100,15 @@ export const Map = ({ displayedEvents, hoveredEventId, onHoverEventId, onSelectE
                                 <p className={`text-[10px] ${isHovered ? 'opacity-100' : 'opacity-0'}`}>{convertNumberToRomanNumeral(i+1).toLowerCase()}</p>
                             </div>
                         </div>
-                        <Tooltip id={`location-tooltip-${i}`} isOpen={isHovered} />
                     </foreignObject>
             })}
             </svg>
+            {selectedLandmarks.map((_, i) => {
+                const isHovered = i === hoveredEventIndex
+                return (
+                    <Tooltip key={`location-tooltip-${i}`} id={`location-tooltip-${i}`} isOpen={isHovered} content={displayedEvents[i].name} />
+                )
+            })}
         </div>
     )
 }
