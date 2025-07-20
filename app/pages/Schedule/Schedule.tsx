@@ -10,7 +10,7 @@ const Schedule: FC<{}> = () => {
 
     return (
         <>
-            <div className={"absolute z-50 w-screen md:pb-32 h-[100dvh] flex gap-10"}>
+            <div className={"absolute z-50 w-screen md:pb-10 h-[100dvh] flex gap-10"}>
                 <div className="flex gap-10 w-full max-w-[1500px] mx-auto px-2">
                     <div className="flex flex-col h-full md:flex-[1] w-full pt-3">
                         <ScheduleDaySelectorSegment
