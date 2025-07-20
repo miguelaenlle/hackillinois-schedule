@@ -4,6 +4,8 @@ import ScheduleInformationSegment from "@/app/components/ScheduleSegments/Schedu
 import ScheduleSpacerSegment from "@/app/components/ScheduleSegments/ScheduleSpacerSegment";
 import { FC } from "react";
 import { useScheduleHook } from "./use-schedule-hook";
+import { Map } from "@/app/components/Map/Map";
+import { MapSegment } from "@/app/components/Map/MapSegment";
 
 // Blur effect from https://stackoverflow.com/questions/70970529/css-div-fade-scroll-styling
 
@@ -12,27 +14,34 @@ const Schedule: FC<{}> = () => {
 
     return (
         <>
-            <div className={"absolute z-10 w-full p-5 pb-20 h-screen"}>
-                <div className="flex flex-col md:flex-row md:px-2 md:px-4 py-0 w-full h-screen gap-0 md:gap-6 xl:gap-10">
-                    <ScheduleDaySelectorSegment
-                        loading={scheduleHook.loading}
-                        splashLoading={scheduleHook.splashLoading}
-                        eventDays={scheduleHook.eventDays}
-                        selectedDay={scheduleHook.selectedDay}
-                        handleSelectDay={scheduleHook.handleSelectDay}
-                    />
-                    <ScheduleInformationSegment
-                        loading={scheduleHook.loading}
-                        splashLoading={scheduleHook.splashLoading}
-                        error={scheduleHook.error}
-                        selectedDay={scheduleHook.selectedDay}
-                        selectedEvent={scheduleHook.selectedEvent}
-                        displayedEvents={scheduleHook.displayedEvents}
-                        eventDays={scheduleHook.eventDays}
-                        handleSelectEvent={scheduleHook.handleSelectEvent}
-                        onSkipSplashLoader={scheduleHook.handleSkipSplashLoader}
-                    />
-                    <ScheduleSpacerSegment />
+            <div className={"absolute z-50 w-screen md:pb-32 h-screen flex gap-10"}>
+                <div className="flex gap-10 w-full max-w-[1500px] mx-auto px-2">
+                    <div className="flex flex-col h-full md:flex-[1] w-full pt-3">
+                        <ScheduleDaySelectorSegment
+                            loading={scheduleHook.loading}
+                            eventDays={scheduleHook.eventDays}
+                            selectedDay={scheduleHook.selectedDay}
+                            handleSelectDay={scheduleHook.handleSelectDay}
+                        />
+                        <ScheduleInformationSegment
+                            loading={scheduleHook.loading}
+                            error={scheduleHook.error}
+                            selectedDay={scheduleHook.selectedDay}
+                            selectedEvent={scheduleHook.selectedEvent}
+                            displayedEvents={scheduleHook.displayedEvents}
+                            eventDays={scheduleHook.eventDays}
+                            handleSelectEvent={scheduleHook.handleSelectEvent}
+                            onHoverEventId={scheduleHook.handleHoverEventId}
+                        />
+                    </div>
+                    <div className={'hidden md:flex md:flex-1 flex-col justify-center items-center'}>
+                        <MapSegment
+                            displayedEvents={scheduleHook.displayedEvents}
+                            hoveredEventId={scheduleHook.hoveredEventId}
+                            onHoverEventId={scheduleHook.handleHoverEventId}
+                            onSelectEvent={scheduleHook.handleSelectEvent}
+                        />
+                    </div>
                 </div>
             </div>
 

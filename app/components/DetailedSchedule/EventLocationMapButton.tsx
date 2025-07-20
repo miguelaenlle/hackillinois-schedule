@@ -13,14 +13,14 @@ const EventLocationMapButton: FC<{
     ])
 
     const linkStyle = useMemo(() => {
-        return `${mapImageUrlAvailable ? "text-blue-500" : "text-gray-800"} ${mapImageUrlAvailable ? "group-hover:text-blue-600" : ""}`
+        return `${mapImageUrlAvailable ? "text-blue-500" : "text-gray-700"} ${mapImageUrlAvailable ? "group-hover:text-blue-600" : ""}`
     }, [mapImageUrlAvailable])
 
     const buttonStyle = useMemo(() => {
         if (mapImageUrlAvailable) {
             return linkStyle
         } else {
-            return "text-gray-500"
+            return "text-gray-700"
         }
     }, [mapImageUrlAvailable, linkStyle])
 
@@ -29,17 +29,15 @@ const EventLocationMapButton: FC<{
             <FaLocationDot className={`${buttonStyle} w-4 h-4 md:w-5 md:h-5`} />
             <div className="flex items-center">
                 {props.event?.locations && props.event?.locations.length > 0 ? (
-                    <TypeText
-                        speed={props.speed ?? 90}
-                        text={props.event.locations.map(loc => loc.description).join(", ")}
-                        className={`${linkStyle} ${mapImageUrlAvailable ? "underline" : ""} font-mono text-sm`}
-                    />
+                    <p
+                        className={`${linkStyle} ${mapImageUrlAvailable ? "underline" : ""} text-md`}
+                    >
+                        {props.event.locations.map(loc => loc.description).join(", ")}
+                    </p>
                 ) : (
-                    <TypeText
-                        speed={props.speed ?? 90}
-                        text="Location not specified"
-                        className="text-sm text-gray-600 font-mono"
-                    />
+                    <p className="text-md text-gray-700">
+                        Location not specified
+                    </p>
                 )}
             </div>
         </>

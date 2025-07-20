@@ -15,8 +15,8 @@ export const useScheduleHook = () => {
     const [eventDays, setEventDays] = useState<DaySelectItemType[] | undefined>();
     const [error, setError] = useState<string | undefined>();
     const [selectedEvent, setSelectedEvent] = useState<EventTypeWithMomentDates | undefined>();
+    const [hoveredEventId, setHoveredEventId] = useState<string | undefined>(undefined);
     const [loading, setLoading] = useState(false);
-    const [splashLoading, setSplashLoading] = useState(true);
 
     const keyboardEventContext = useContext(KeyboardEventContext);
 
@@ -62,7 +62,7 @@ export const useScheduleHook = () => {
             for (let i = 0; i < newEventsWithMomentDate.length; i++) {
                 const event = newEventsWithMomentDate[i];
                 const dayOfWeek = event.startTimeMoment.format("dddd");
-                const dateShort = event.startTimeMoment.format("MMM D, YYYY");
+                const dateShort = event.startTimeMoment.format("MM/DD");
                 const date = event.startTimeMoment.format("MMMM D, YYYY");
                 if (!uniqueDates.some((daySelectItem) => daySelectItem.fullDate === date)) {
                     uniqueDates.push({
@@ -91,19 +91,32 @@ export const useScheduleHook = () => {
         keyboardEventContext?.handleSetSelectedMode("schedule");
     }
 
-    const handleMove = useCallback((e: any) => {
-        if (keyboardEventContext?.selectedMode !== "daySelector") {
-            return;
+    const handleSelectEventById = (eventId: string) => {
+        const event = events?.find(e => e.eventId === eventId);
+        if (event) {
+            handleSelectEvent(event);
         }
-        if (e.key === "ArrowUp") {
-            e.preventDefault();
-            if (selectedDay > 0) {
-                setSelectedDay(selectedDay - 1);
-            }
-        } else if (e.key === "ArrowDown") {
-            e.preventDefault();
-            if (selectedDay < (eventDays?.length ?? 0) - 1) {
-                setSelectedDay(selectedDay + 1);
+    }
+
+    const handleMove = useCallback((e: any) => {
+        if (keyboardEventContext?.selectedMode === 'daySelector') {
+            if (e.key === "ArrowLeft") {
+                e.preventDefault();
+                if (selectedDay > 0) {
+                    setSelectedDay(selectedDay - 1);
+                } else {
+                    keyboardEventContext?.handleSetSelectedMode('schedule');
+                }
+            } else if (e.key === "ArrowDown") {
+                e.preventDefault();
+                keyboardEventContext?.handleSetSelectedMode('schedule');
+            } else if (e.key === "ArrowUp" || e.key === "ArrowRight") {
+                e.preventDefault();
+                if (selectedDay < (eventDays?.length ?? 0) - 1) {
+                    setSelectedDay(selectedDay + 1);
+                } else {
+                    keyboardEventContext?.handleSetSelectedMode('schedule');
+                }
             }
         }
     }, [
@@ -112,8 +125,12 @@ export const useScheduleHook = () => {
         keyboardEventContext?.selectedMode
     ])
 
-    const handleSkipSplashLoader = () => {
-        setSplashLoading(false);
+    const handleHoverEventId = (eventId: string | undefined) => {
+        if (eventId === undefined) {
+            setHoveredEventId(undefined);
+        } else {
+            setHoveredEventId(eventId);
+        }
     }
 
     useEffect(() => {
@@ -137,28 +154,20 @@ export const useScheduleHook = () => {
         }
     }, [selectedEvent])
 
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-            setSplashLoading(false);
-        }, 7000);
-        return () => {
-            clearTimeout(timeout);
-        }
-    }, [])
-
     return {
         loading,
-        splashLoading,
         mode,
         selectedDay,
         displayedEvents,
         error,
         eventDays,
         selectedEvent,
+        hoveredEventId,
 
         handleSelectDay,
         handleToggleMode,
         handleSelectEvent,
-        handleSkipSplashLoader
+        handleHoverEventId,
+        handleSelectEventById,
     }
 }
